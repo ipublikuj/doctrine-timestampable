@@ -132,7 +132,8 @@ class TimestampableTest extends Tester\TestCase
 
 		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
 
-		Assert::notEqual($article->getPublishedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
+		Assert::notEqual($article->getPublishedAt()->format('Ymd H:i:s'), $article->getCreatedAt()->format('Ymd H:i:s'));
+		Assert::equal($article->getPublishedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
 	}
 
@@ -249,6 +250,9 @@ class TimestampableTest extends Tester\TestCase
 		$this->em->flush();
 
 		Assert::equal($firstPublished->format('Ymd H:i:s'), $article->getPublishedAt()->format('Ymd H:i:s'));
+
+		// Wait for a second
+		sleep(1);
 
 		$deleted = new Models\TypeEntity;
 		$deleted->setTitle('Deleted');
