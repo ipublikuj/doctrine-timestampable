@@ -1,0 +1,54 @@
+{
+	"name"			: "ipub/doctrine-timestampable",
+	"type"			: "library",
+	"description"	: "Behavior for automate the update of timestamp fields on your Entities.",
+	"keywords"		: ["nette", "timestampable", "doctrine", "tools", "ipub", "ipublikuj"],
+	"homepage"		: "https://github.com/iPublikuj/doctrine-timestampable",
+	"license"		: ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+
+	"authors": [
+		{
+			"name"		: "iPublikuj:cms",
+			"email"		: "info@ipublikuj.eu",
+			"homepage"	: "http://www.ipublikuj.eu/"
+		}
+	],
+
+	"support": {
+		"email"		:"support@ipublikuj.eu",
+		"issues"	:"https://github.com/iPublikuj/doctrine-timestampable/issues"
+	},
+
+	"require": {
+		"php"	: ">=5.4.0",
+
+		"doctrine/orm"	: "~2.4",
+
+		"nette/di"			: "~2.2",
+		"nette/utils"		: "~2.2",
+
+		"kdyby/events"	: "~2.3"
+	},
+
+	"require-dev": {
+		"nette/bootstrap"		: "~2.2",
+		"nette/mail"			: "~2.2",
+		"nette/safe-stream"		: "~2.2",
+		"nette/robot-loader"	: "~2.2",
+		"nette/tester"			: "@dev",
+
+		"kdyby/doctrine"		: "~2.3",
+		"kdyby/events"			: "~2.3",
+		"kdyby/doctrine-cache"	: "~2.3",
+
+		"tracy/tracy"	: "@dev",
+
+		"janmarek/mockista"	: "@dev"
+	},
+
+	"autoload": {
+		"psr-0": {
+			"IPub\\DoctrineTimestampable\\": "src/"
+		}
+	}
+}
