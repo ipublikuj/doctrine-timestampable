@@ -23,10 +23,10 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 /**
  * @ORM\Entity
  */
-class ArticleEntity implements Entities\IEntityCreated, Entities\IEntityModified, Entities\IEntityRemoved
+class ArticleEntity implements Entities\IEntityCreated, Entities\IEntityUpdated, Entities\IEntityRemoved
 {
 	use Entities\TEntityCreated;
-	use Entities\TEntityModified;
+	use Entities\TEntityUpdated;
 	use Entities\TEntityRemoved;
 
 	/**
