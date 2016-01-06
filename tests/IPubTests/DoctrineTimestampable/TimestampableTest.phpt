@@ -111,7 +111,7 @@ class TimestampableTest extends Tester\TestCase
 
 		$this->em->flush();
 
-		Assert::equal($createdAt, $article->getCreatedAt());
+		Assert::equal($createdAt->format('Ymd H:i:s'), $article->getCreatedAt()->format('Ymd H:i:s'));
 		Assert::notEqual($article->getCreatedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
 		Assert::null($article->getPublishedAt());
 
@@ -184,8 +184,10 @@ class TimestampableTest extends Tester\TestCase
 		$published = new Models\TypeEntity;
 		$published->setTitle('Published');
 
+		$publishedAt = new \DateTime('now -1day');
+
 		$article->setType($published);
-		$article->setPublishedAt('forcedUser');
+		$article->setPublishedAt($publishedAt);
 
 		$this->em->persist($article);
 		$this->em->persist($published);
@@ -197,6 +199,7 @@ class TimestampableTest extends Tester\TestCase
 		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
 
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
+		Assert::same($publishedAt, $article->getPublishedAt());
 	}
 
 	public function testMultipleValueTrackingField()
