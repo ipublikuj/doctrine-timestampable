@@ -1,6 +1,6 @@
 <?php
 /**
- * IEntityModified.php
+ * IEntityUpdated.php
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
@@ -22,7 +22,7 @@ namespace IPub\DoctrineTimestampable\Entities;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-interface IEntityModified
+interface IEntityUpdated
 {
 	/**
 	 * @param \DateTime $updatedAt

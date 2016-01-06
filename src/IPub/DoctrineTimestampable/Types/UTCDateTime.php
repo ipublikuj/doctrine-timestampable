@@ -30,7 +30,7 @@ use IPub;
  */
 class UTCDateTime extends Types\DateTimeType
 {
-	const DATETIME = 'utcdatetime';
+	const UTC_DATETIME = 'utcdatetime';
 
 	/**
 	 * @var \DateTimeZone|NULL
@@ -42,7 +42,7 @@ class UTCDateTime extends Types\DateTimeType
 	 */
 	public function getName()
 	{
-		return self::DATETIME;
+		return self::UTC_DATETIME;
 	}
 
 	/**

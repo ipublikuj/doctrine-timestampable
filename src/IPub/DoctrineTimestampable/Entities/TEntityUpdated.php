@@ -1,6 +1,6 @@
 <?php
 /**
- * TEntityModified.php
+ * TEntityUpdated.php
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
@@ -24,7 +24,7 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-trait TEntityModified
+trait TEntityUpdated
 {
 	/**
 	 * @var \DateTime

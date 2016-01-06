@@ -43,6 +43,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	private $defaults = [
 		'lazyAssociation' => FALSE,
 		'autoMapField'    => TRUE,
+		'dbFieldType'     => 'datetime',
 	];
 
 	public function loadConfiguration()
@@ -52,12 +53,14 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 
 		Utils\Validators::assert($config['lazyAssociation'], 'bool', 'lazyAssociation');
 		Utils\Validators::assert($config['autoMapField'], 'bool', 'autoMapField');
+		Utils\Validators::assert($config['dbFieldType'], 'string', 'dbFieldType');
 
 		$builder->addDefinition($this->prefix('configuration'))
 			->setClass('IPub\DoctrineTimestampable\Configuration')
 			->setArguments([
 				$config['lazyAssociation'],
-				$config['autoMapField']
+				$config['autoMapField'],
+				$config['dbFieldType'],
 			]);
 
 		$builder->addDefinition($this->prefix('driver'))
@@ -76,7 +79,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	public function getDatabaseTypes()
 	{
 		return [
-			Types\UTCDateTime::PHONE => 'IPub\DoctrineTimestampable\Types\UTCDateTime',
+			Types\UTCDateTime::UTC_DATETIME => 'IPub\DoctrineTimestampable\Types\UTCDateTime',
 		];
 	}
 
