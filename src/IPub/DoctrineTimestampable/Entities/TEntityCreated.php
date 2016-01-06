@@ -27,24 +27,22 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 trait TEntityCreated
 {
 	/**
-	 * @var mixed
+	 * @var \DateTime
 	 *
 	 * @IPub\Timestampable(on="create")
 	 */
 	protected $createdAt;
 
 	/**
-	 * {@inheritdoc}
+	 * @param \DateTime $createdAt
 	 */
-	public function setCreatedAt($createdAt)
+	public function setCreatedAt(\DateTime $createdAt)
 	{
 		$this->createdAt = $createdAt;
-
-		return $this;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @return \DateTime
 	 */
 	public function getCreatedAt()
 	{

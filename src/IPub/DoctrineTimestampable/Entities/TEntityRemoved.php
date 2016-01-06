@@ -27,24 +27,22 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 trait TEntityRemoved
 {
 	/**
-	 * @var mixed
+	 * @var \DateTime
 	 *
 	 * @IPub\Timestampable(on="delete")
 	 */
 	protected $deletedAt;
 
 	/**
-	 * {@inheritdoc}
+	 * @param \DateTime $deletedAt
 	 */
-	public function setDeletedAt($deletedAt)
+	public function setDeletedAt(\DateTime $deletedAt)
 	{
 		$this->deletedAt = $deletedAt;
-
-		return $this;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @return \DateTime
 	 */
 	public function getDeletedAt()
 	{

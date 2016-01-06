@@ -25,14 +25,14 @@ namespace IPub\DoctrineTimestampable\Entities;
 interface IEntityModified
 {
 	/**
-	 * @param mixed $updatedAt
+	 * @param \DateTime $updatedAt
 	 *
 	 * @return $this
 	 */
-	public function setUpdatedAt($updatedAt);
+	public function setUpdatedAt(\DateTime $updatedAt);
 
 	/**
-	 * @return mixed
+	 * @return \DateTime
 	 */
 	public function getUpdatedAt();
 }

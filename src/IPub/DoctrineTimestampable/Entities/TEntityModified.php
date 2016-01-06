@@ -27,24 +27,22 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 trait TEntityModified
 {
 	/**
-	 * @var mixed
+	 * @var \DateTime
 	 *
 	 * @IPub\Timestampable(on="update")
 	 */
 	protected $updatedAt;
 
 	/**
-	 * {@inheritdoc}
+	 * @param \DateTime $updatedAt
 	 */
-	public function setUpdatedAt($updatedAt)
+	public function setUpdatedAt(\DateTime $updatedAt)
 	{
 		$this->updatedAt = $updatedAt;
-
-		return $this;
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @return \DateTime
 	 */
 	public function getUpdatedAt()
 	{

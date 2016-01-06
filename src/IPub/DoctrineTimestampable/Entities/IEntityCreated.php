@@ -25,14 +25,14 @@ namespace IPub\DoctrineTimestampable\Entities;
 interface IEntityCreated
 {
 	/**
-	 * @param mixed $createdAt
+	 * @param \DateTime $createdAt
 	 *
 	 * @return $this
 	 */
-	function setCreatedAt($createdAt);
+	function setCreatedAt(\DateTime $createdAt);
 
 	/**
-	 * @return mixed
+	 * @return \DateTime
 	 */
 	function getCreatedAt();
 }

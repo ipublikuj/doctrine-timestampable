@@ -25,14 +25,14 @@ namespace IPub\DoctrineTimestampable\Entities;
 interface IEntityRemoved
 {
 	/**
-	 * @param mixed $deletedAt
+	 * @param \DateTime $deletedAt
 	 *
 	 * @return $this
 	 */
-	function setDeletedAt($deletedAt);
+	function setDeletedAt(\DateTime $deletedAt);
 
 	/**
-	 * @return mixed
+	 * @return \DateTime
 	 */
 	function getDeletedAt();
 }
