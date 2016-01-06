@@ -32,7 +32,6 @@ use IPub\DoctrineTimestampable\Mapping;
 require __DIR__ . '/../bootstrap.php';
 require_once __DIR__ . '/models/ArticleEntity.php';
 require_once __DIR__ . '/models/ArticleMultiChangeEntity.php';
-require_once __DIR__ . '/models/UserEntity.php';
 require_once __DIR__ . '/models/TypeEntity.php';
 
 /**
