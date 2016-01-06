@@ -199,7 +199,7 @@ class TimestampableTest extends Tester\TestCase
 		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
 
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
-		Assert::same($publishedAt, $article->getPublishedAt());
+		Assert::equal($publishedAt->format('Ymd H:i:s'), $article->getPublishedAt()->format('Ymd H:i:s'));
 	}
 
 	public function testMultipleValueTrackingField()
