@@ -1,6 +1,6 @@
 <?php
 /**
- * TimestampableListener.php
+ * TimestampableSubscriber.php
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
@@ -30,14 +30,14 @@ use IPub\DoctrineTimestampable\Exceptions;
 use IPub\DoctrineTimestampable\Mapping;
 
 /**
- * Doctrine blameable listener
+ * Doctrine blameable subscriber
  *
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Events
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-final class TimestampableListener extends Nette\Object implements Events\Subscriber
+final class TimestampableSubscriber extends Nette\Object implements Events\Subscriber
 {
 	/**
 	 * Define class name

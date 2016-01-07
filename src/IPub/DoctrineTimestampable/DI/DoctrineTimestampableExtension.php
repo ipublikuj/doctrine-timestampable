@@ -19,13 +19,13 @@ use Nette\DI;
 use Nette\Utils;
 use Nette\PhpGenerator as Code;
 
-use IPub\DoctrineTimestampable;
-use IPub\DoctrineTimestampable\Types;
-
 use Kdyby;
-use Kdyby\Doctrine;
-use Kdyby\DoctrineCache;
-use Kdyby\Events;
+use Kdyby\Events as KdybyEvents;
+
+use IPub\DoctrineTimestampable;
+use IPub\DoctrineTimestampable\Events;
+use IPub\DoctrineTimestampable\Mapping;
+use IPub\DoctrineTimestampable\Types;
 
 /**
  * Doctrine timestampable extension container
@@ -56,7 +56,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 		Utils\Validators::assert($config['dbFieldType'], 'string', 'dbFieldType');
 
 		$builder->addDefinition($this->prefix('configuration'))
-			->setClass('IPub\DoctrineTimestampable\Configuration')
+			->setClass(DoctrineTimestampable\Configuration::CLASS_NAME)
 			->setArguments([
 				$config['lazyAssociation'],
 				$config['autoMapField'],
@@ -64,11 +64,11 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 			]);
 
 		$builder->addDefinition($this->prefix('driver'))
-			->setClass('IPub\DoctrineTimestampable\Mapping\Driver\Timestampable');
+			->setClass(Mapping\Driver\Timestampable::CLASS_NAME);
 
 		$builder->addDefinition($this->prefix('listener'))
-			->setClass('IPub\DoctrineTimestampable\Events\TimestampableListener')
-			->addTag(Events\DI\EventsExtension::TAG_SUBSCRIBER);
+			->setClass(Events\TimestampableSubscriber::CLASS_NAME)
+			->addTag(KdybyEvents\DI\EventsExtension::TAG_SUBSCRIBER);
 	}
 
 	/**
@@ -79,7 +79,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	public function getDatabaseTypes()
 	{
 		return [
-			Types\UTCDateTime::UTC_DATETIME => 'IPub\DoctrineTimestampable\Types\UTCDateTime',
+			Types\UTCDateTime::UTC_DATETIME => Types\UTCDateTime::CLASS_NAME,
 		];
 	}
 

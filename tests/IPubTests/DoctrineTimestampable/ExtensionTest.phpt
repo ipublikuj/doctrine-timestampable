@@ -41,7 +41,7 @@ class ExtensionTest extends Tester\TestCase
 
 		Assert::true($dic->getService('doctrineTimestampable.configuration') instanceof DoctrineTimestampable\Configuration);
 		Assert::true($dic->getService('doctrineTimestampable.driver') instanceof DoctrineTimestampable\Mapping\Driver\Timestampable);
-		Assert::true($dic->getService('doctrineTimestampable.listener') instanceof DoctrineTimestampable\Events\TimestampableListener);
+		Assert::true($dic->getService('doctrineTimestampable.subscriber') instanceof DoctrineTimestampable\Events\TimestampableSubscriber);
 	}
 
 	/**

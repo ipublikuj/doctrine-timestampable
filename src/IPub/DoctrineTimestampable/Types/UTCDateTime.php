@@ -30,6 +30,14 @@ use IPub;
  */
 class UTCDateTime extends Types\DateTimeType
 {
+	/**
+	 * Define class name
+	 */
+	const CLASS_NAME = __CLASS__;
+
+	/**
+	 * Define datatype name
+	 */
 	const UTC_DATETIME = 'utcdatetime';
 
 	/**

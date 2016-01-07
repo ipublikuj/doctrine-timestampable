@@ -29,6 +29,11 @@ use Nette\Http;
 final class Configuration extends Nette\Object
 {
 	/**
+	 * Define class name
+	 */
+	const CLASS_NAME = __CLASS__;
+
+	/**
 	 * Flag if use lazy association or not
 	 *
 	 * @var bool

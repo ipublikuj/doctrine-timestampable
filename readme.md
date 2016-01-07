@@ -6,7 +6,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/ipub/doctrine-timestampable.svg?style=flat-square)](https://packagist.org/packages/ipub/doctrine-timestampable)
 [![Composer Downloads](https://img.shields.io/packagist/dt/ipub/doctrine-timestampable.svg?style=flat-square)](https://packagist.org/packages/ipub/doctrine-timestampable)
 [![License](https://img.shields.io/packagist/l/ipub/doctrine-timestampable.svg?style=flat-square)](https://packagist.org/packages/ipub/doctrine-timestampable)
-[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/568ae065eb4f47003c00103e.svg?style=flat-square)](https://www.versioneye.com/user/projects/568ae065eb4f47003c00103e)
+[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/568ecb74691e2d003d00007c.svg?style=flat-square)](https://www.versioneye.com/user/projects/568ecb74691e2d003d00007c)
 
 Timestampable behavior will automate the update of date fields on your Entities in [Nette Framework](http://nette.org/) and [Doctrine 2](http://www.doctrine-project.org/)
 
