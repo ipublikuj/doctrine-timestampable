@@ -54,24 +54,12 @@ class TimestampableTest extends Tester\TestCase
 	 */
 	private $em;
 
-	/**
-	 * @var Events\TimestampableListener
-	 */
-	private $listener;
-
-	/**
-	 * @var DoctrineTimestampable\Configuration
-	 */
-	private $configuration;
-
 	protected function setUp()
 	{
 		parent::setUp();
 
 		$this->container = $this->createContainer();
 		$this->em = $this->container->getByType('Kdyby\Doctrine\EntityManager');
-		$this->listener = $this->container->getByType('IPub\DoctrineTimestampable\Events\TimestampableListener');
-		$this->configuration = $this->container->getByType('IPub\DoctrineTimestampable\Configuration');
 	}
 
 	public function testCreate()
