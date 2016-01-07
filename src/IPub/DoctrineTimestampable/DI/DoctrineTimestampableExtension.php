@@ -66,7 +66,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 		$builder->addDefinition($this->prefix('driver'))
 			->setClass(Mapping\Driver\Timestampable::CLASS_NAME);
 
-		$builder->addDefinition($this->prefix('listener'))
+		$builder->addDefinition($this->prefix('subscriber'))
 			->setClass(Events\TimestampableSubscriber::CLASS_NAME)
 			->addTag(KdybyEvents\DI\EventsExtension::TAG_SUBSCRIBER);
 	}
