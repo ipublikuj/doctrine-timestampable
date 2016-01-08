@@ -14,6 +14,9 @@
 
 namespace IPub\DoctrineTimestampable\DI;
 
+use Doctrine;
+use Doctrine\DBAL;
+
 use Nette;
 use Nette\DI;
 use Nette\Utils;
@@ -71,20 +74,10 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 
+		DBAL\Types\Type::addType(Types\UTCDateTime::UTC_DATETIME, Types\UTCDateTime::CLASS_NAME);
+
 		$builder->getDefinition($builder->getByType('Doctrine\ORM\EntityManagerInterface') ?: 'doctrine.default.entityManager')
 			->addSetup('?->getEventManager()->addEventSubscriber(?)', ['@self', $builder->getDefinition($this->prefix('subscriber'))]);
-	}
-
-	/**
-	 * Returns array of typeName => typeClass
-	 *
-	 * @return array
-	 */
-	public function getDatabaseTypes()
-	{
-		return [
-			Types\UTCDateTime::UTC_DATETIME => Types\UTCDateTime::CLASS_NAME,
-		];
 	}
 
 	/**
