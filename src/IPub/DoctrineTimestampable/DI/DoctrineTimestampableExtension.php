@@ -19,9 +19,6 @@ use Nette\DI;
 use Nette\Utils;
 use Nette\PhpGenerator as Code;
 
-use Kdyby;
-use Kdyby\Events as KdybyEvents;
-
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Events;
 use IPub\DoctrineTimestampable\Mapping;
@@ -67,8 +64,15 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 			->setClass(Mapping\Driver\Timestampable::CLASS_NAME);
 
 		$builder->addDefinition($this->prefix('subscriber'))
-			->setClass(Events\TimestampableSubscriber::CLASS_NAME)
-			->addTag(KdybyEvents\DI\EventsExtension::TAG_SUBSCRIBER);
+			->setClass(Events\TimestampableSubscriber::CLASS_NAME);
+	}
+
+	public function beforeCompile()
+	{
+		$builder = $this->getContainerBuilder();
+
+		$builder->getDefinition($builder->getByType('Doctrine\ORM\EntityManagerInterface') ?: 'doctrine.default.entityManager')
+			->addSetup('?->getEventManager()->addEventSubscriber(?)', ['@self', $builder->getDefinition($this->prefix('subscriber'))]);
 	}
 
 	/**

@@ -46,11 +46,6 @@ final class Timestampable extends Nette\Object
 	const EXTENSION_ANNOTATION = 'IPub\DoctrineTimestampable\Mapping\Annotation\Timestampable';
 
 	/**
-	 * @var Common\Persistence\ObjectManager
-	 */
-	private $objectManager;
-
-	/**
 	 * @var DoctrineTimestampable\Configuration
 	 */
 	private $configuration;
@@ -80,20 +75,16 @@ final class Timestampable extends Nette\Object
 
 	/**
 	 * @param DoctrineTimestampable\Configuration $configuration
-	 * @param Common\Persistence\ObjectManager $objectManager
 	 */
-	public function __construct(
-		DoctrineTimestampable\Configuration $configuration,
-		Common\Persistence\ObjectManager $objectManager
-	) {
-		$this->objectManager = $objectManager;
+	public function __construct(DoctrineTimestampable\Configuration $configuration) {
 		$this->configuration = $configuration;
 	}
 
 	/**
+	 * @param Common\Persistence\ObjectManager $objectManager
 	 * @param ORM\Mapping\ClassMetadata $classMetadata
 	 */
-	public function loadMetadataForObjectClass(ORM\Mapping\ClassMetadata $classMetadata)
+	public function loadMetadataForObjectClass(Common\Persistence\ObjectManager $objectManager, ORM\Mapping\ClassMetadata $classMetadata)
 	{
 		if ($classMetadata->isMappedSuperclass) {
 			return; // Ignore mappedSuperclasses for now
@@ -111,9 +102,9 @@ final class Timestampable extends Nette\Object
 		if ($reflectionClass !== NULL) {
 			foreach (array_reverse(class_parents($classMetadata->getName())) as $parentClass) {
 				// Read only inherited mapped classes
-				if ($this->objectManager->getMetadataFactory()->hasMetadataFor($parentClass)) {
+				if ($objectManager->getMetadataFactory()->hasMetadataFor($parentClass)) {
 					/** @var ORM\Mapping\ClassMetadata $parentClassMetadata */
-					$parentClassMetadata = $this->objectManager->getClassMetadata($parentClass);
+					$parentClassMetadata = $objectManager->getClassMetadata($parentClass);
 
 					$config = $this->readExtendedMetadata($parentClassMetadata, $config);
 
@@ -139,7 +130,7 @@ final class Timestampable extends Nette\Object
 		$cacheId = self::getCacheId($classMetadata->getName());
 
 		/** @var Common\Cache\Cache $cacheDriver */
-		if ($cacheDriver = $this->objectManager->getMetadataFactory()->getCacheDriver()) {
+		if ($cacheDriver = $objectManager->getMetadataFactory()->getCacheDriver()) {
 			$cacheDriver->save($cacheId, $config, NULL);
 		}
 
@@ -228,11 +219,12 @@ final class Timestampable extends Nette\Object
 	 * Get the configuration for specific object class
 	 * if cache driver is present it scans it also
 	 *
+	 * @param Common\Persistence\ObjectManager $objectManager
 	 * @param string $class
 	 *
 	 * @return array
 	 */
-	public function getObjectConfigurations($class)
+	public function getObjectConfigurations(Common\Persistence\ObjectManager $objectManager, $class)
 	{
 		$config = [];
 
@@ -240,7 +232,7 @@ final class Timestampable extends Nette\Object
 			$config = self::$objectConfigurations[$class];
 
 		} else {
-			$metadataFactory = $this->objectManager->getMetadataFactory();
+			$metadataFactory = $objectManager->getMetadataFactory();
 			/** @var Common\Cache\Cache $cacheDriver|NULL */
 			$cacheDriver = $metadataFactory->getCacheDriver();
 
@@ -256,7 +248,7 @@ final class Timestampable extends Nette\Object
 					$classMetadata = $metadataFactory->getMetadataFor($class);
 
 					// Re-generate metadata on cache miss
-					$this->loadMetadataForObjectClass($classMetadata);
+					$this->loadMetadataForObjectClass($objectManager, $classMetadata);
 
 					if (isset(self::$objectConfigurations[$class])) {
 						$config = self::$objectConfigurations[$class];
@@ -266,7 +258,7 @@ final class Timestampable extends Nette\Object
 				$objectClass = isset($config['useObjectClass']) ? $config['useObjectClass'] : $class;
 
 				if ($objectClass !== $class) {
-					$this->getObjectConfigurations($objectClass);
+					$this->getObjectConfigurations($objectManager, $objectClass);
 				}
 			}
 		}
