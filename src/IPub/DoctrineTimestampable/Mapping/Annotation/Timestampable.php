@@ -22,7 +22,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Annotation
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  *
  * @Annotation
  * @Target({"PROPERTY"})

@@ -22,7 +22,7 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 trait TEntityCreated
 {

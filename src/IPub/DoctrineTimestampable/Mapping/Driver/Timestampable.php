@@ -31,7 +31,7 @@ use IPub\DoctrineTimestampable\Mapping;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Driver
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 final class Timestampable extends Nette\Object
 {

@@ -24,7 +24,7 @@ use Nette\Http;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     common
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 final class Configuration extends Nette\Object
 {

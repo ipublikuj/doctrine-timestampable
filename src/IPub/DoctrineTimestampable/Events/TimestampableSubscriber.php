@@ -21,9 +21,6 @@ use Doctrine;
 use Doctrine\Common;
 use Doctrine\ORM;
 
-use Kdyby;
-use Kdyby\Events;
-
 use IPub;
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Exceptions;
@@ -35,9 +32,9 @@ use IPub\DoctrineTimestampable\Mapping;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Events
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-final class TimestampableSubscriber extends Nette\Object implements Events\Subscriber
+final class TimestampableSubscriber extends Nette\Object implements Common\EventSubscriber
 {
 	/**
 	 * Define class name

@@ -20,7 +20,7 @@ namespace IPub\DoctrineTimestampable\Entities;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 interface IEntityCreated
 {

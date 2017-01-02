@@ -26,7 +26,7 @@ use IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Types
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class UTCDateTime extends Types\DateTimeType
 {

@@ -40,7 +40,7 @@ require_once __DIR__ . '/models/TypeEntity.php';
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Tests
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class TimestampableTest extends Tester\TestCase
 {

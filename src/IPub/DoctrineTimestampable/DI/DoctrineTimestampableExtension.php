@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI
  * @since          1.0.0
@@ -32,7 +32,7 @@ use IPub\DoctrineTimestampable\Types;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 final class DoctrineTimestampableExtension extends DI\CompilerExtension
 {
