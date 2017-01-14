@@ -34,8 +34,9 @@
 
 		"doctrine/orm"	: "~2.5",
 
-		"nette/di"		: "~2.3",
-		"nette/utils"	: "~2.3",
+		"nette/di"			: "~2.3",
+		"nette/utils"		: "~2.3",
+		"nette/reflection"	: "~2.3",
 
 		"pds/skeleton"	: "@dev"
 	},
