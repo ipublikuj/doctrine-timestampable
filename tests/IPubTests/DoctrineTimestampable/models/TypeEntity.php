@@ -13,6 +13,8 @@
  * @date           07.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPubTests\DoctrineTimestampable\Models;
 
 use Doctrine\ORM\Mapping as ORM;

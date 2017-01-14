@@ -289,9 +289,9 @@ final class Timestampable extends Nette\Object
 	 * @param ORM\Mapping\ClassMetadata $meta
 	 * @param string $field
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	private function isValidField(ORM\Mapping\ClassMetadata $meta, string $field) : boolean
+	private function isValidField(ORM\Mapping\ClassMetadata $meta, string $field) : bool
 	{
 		$mapping = $meta->getFieldMapping($field);
 

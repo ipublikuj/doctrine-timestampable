@@ -13,6 +13,8 @@
  * @date           06.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPubTests\DoctrineTimestampable;
 
 use Nette;
