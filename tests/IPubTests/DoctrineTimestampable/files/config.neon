@@ -23,6 +23,3 @@ doctrine:
 	hydrationCache: array
 	driver: pdo_sqlite
 	memory: true
-
-session:
-	autoStart: false
