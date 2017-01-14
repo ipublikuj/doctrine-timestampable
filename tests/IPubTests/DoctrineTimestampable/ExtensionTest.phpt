@@ -23,7 +23,7 @@ use Tester\Assert;
 use IPub;
 use IPub\DoctrineTimestampable;
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 /**
  * Registering doctrine Timestampable extension tests

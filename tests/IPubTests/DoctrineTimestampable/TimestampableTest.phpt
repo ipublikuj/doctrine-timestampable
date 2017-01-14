@@ -29,7 +29,7 @@ use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Events;
 use IPub\DoctrineTimestampable\Mapping;
 
-require __DIR__ . DS . '..' . DS . 'bootstrap.php';
+require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 require_once __DIR__ . DS . 'models' . DS . 'ArticleEntity.php';
 require_once __DIR__ . DS . 'models' . DS . 'ArticleMultiChangeEntity.php';
 require_once __DIR__ . DS . 'models' . DS . 'TypeEntity.php';

@@ -259,8 +259,6 @@ Now property ```$publishedBy``` will be changed when article type is set to **Pu
 
 ### Using traits
 
-**Note:** this feature is only available since php 5.4.0. And you are not required to use the Traits provided by extensions.
-
 You can use extension traits for quick createdAt updatedAt property definitions. This traits are splitted into three, one for entity creation, one for updating and one for deleting entity.
 
 ```php
