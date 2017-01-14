@@ -48,7 +48,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return array
 	 */
-	public function getSubscribedEvents()
+	public function getSubscribedEvents() : array
 	{
 		return [
 			ORM\Events::loadClassMetadata,
@@ -68,6 +68,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	/**
 	 * @param ORM\Event\LoadClassMetadataEventArgs $eventArgs
 	 *
+	 * @return void
+	 *
 	 * @throws Exceptions\InvalidMappingException
 	 */
 	public function loadClassMetadata(ORM\Event\LoadClassMetadataEventArgs $eventArgs)
@@ -86,6 +88,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 
 	/**
 	 * @param ORM\Event\OnFlushEventArgs $eventArgs
+	 *
+	 * @return void
 	 *
 	 * @throws Exceptions\UnexpectedValueException
 	 */
@@ -203,6 +207,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	/**
 	 * @param mixed $entity
 	 * @param ORM\Event\LifecycleEventArgs $eventArgs
+	 *
+	 * @return void
 	 */
 	public function prePersist($entity, ORM\Event\LifecycleEventArgs $eventArgs)
 	{
@@ -222,6 +228,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	/**
 	 * @param mixed $entity
 	 * @param ORM\Event\LifecycleEventArgs $eventArgs
+	 *
+	 * @return void
 	 */
 	public function preUpdate($entity, ORM\Event\LifecycleEventArgs $eventArgs)
 	{
@@ -239,6 +247,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	/**
 	 * @param mixed $entity
 	 * @param ORM\Event\LifecycleEventArgs $eventArgs
+	 *
+	 * @return void
 	 */
 	public function preRemove($entity, ORM\Event\LifecycleEventArgs $eventArgs)
 	{
@@ -258,6 +268,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 * @param ORM\UnitOfWork $uow
 	 * @param mixed $object
 	 * @param ORM\Mapping\ClassMetadata $classMetadata
+	 *
+	 * @return void
 	 */
 	private function updateFields(array $fields, ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata)
 	{
@@ -275,8 +287,10 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 * @param mixed $object
 	 * @param ORM\Mapping\ClassMetadata $classMetadata
 	 * @param string $field
+	 *
+	 * @return void
 	 */
-	private function updateField(ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata, $field)
+	private function updateField(ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata, string $field)
 	{
 		$property = $classMetadata->getReflectionProperty($field);
 
@@ -299,7 +313,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return mixed
 	 */
-	private function getDateValue(ORM\Mapping\ClassMetadata $classMetadata, $field)
+	private function getDateValue(ORM\Mapping\ClassMetadata $classMetadata, string $field)
 	{
 		$mapping = $classMetadata->getFieldMapping($field);
 
@@ -319,9 +333,11 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 * @param ORM\Mapping\ClassMetadata $classMetadata
 	 * @param string $eventName
 	 *
+	 * @return void
+	 *
 	 * @throws ORM\Mapping\MappingException
 	 */
-	private function registerEvent(ORM\Mapping\ClassMetadata $classMetadata, $eventName)
+	private function registerEvent(ORM\Mapping\ClassMetadata $classMetadata, string $eventName)
 	{
 		if (!$this->hasRegisteredListener($classMetadata, $eventName, get_called_class())) {
 			$classMetadata->addEntityListener($eventName, get_called_class(), $eventName);
@@ -335,7 +351,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return bool
 	 */
-	private static function hasRegisteredListener(ORM\Mapping\ClassMetadata $classMetadata, $eventName, $listenerClass)
+	private static function hasRegisteredListener(ORM\Mapping\ClassMetadata $classMetadata, string $eventName, string $listenerClass) : bool
 	{
 		if (!isset($classMetadata->entityListeners[$eventName])) {
 			return FALSE;

@@ -12,6 +12,8 @@
  * @date           06.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable;
 
 use Nette;
@@ -54,7 +56,7 @@ final class Configuration extends Nette\Object
 	 * @param bool $autoMapField
 	 * @param string $dbFieldType
 	 */
-	public function __construct($lazyAssociation = FALSE, $autoMapField = FALSE, $dbFieldType = 'datetime')
+	public function __construct($lazyAssociation = FALSE, $autoMapField = FALSE, string $dbFieldType = 'datetime')
 	{
 		$this->lazyAssociation = $lazyAssociation;
 		$this->autoMapField = $autoMapField;
@@ -64,7 +66,7 @@ final class Configuration extends Nette\Object
 	/**
 	 * @return bool
 	 */
-	public function autoMapField()
+	public function autoMapField() : bool
 	{
 		return $this->autoMapField === TRUE;
 	}
@@ -72,7 +74,7 @@ final class Configuration extends Nette\Object
 	/**
 	 * @return bool
 	 */
-	public function useLazyAssociation()
+	public function useLazyAssociation() : bool
 	{
 		return $this->lazyAssociation === TRUE;
 	}

@@ -20,8 +20,8 @@ use Doctrine;
 
 use Nette;
 use Nette\DI;
-use Nette\Utils;
 use Nette\PhpGenerator as Code;
+use Nette\Utils;
 
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Events;
@@ -91,6 +91,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	{
 		parent::afterCompile($class);
 
+		/** @var Code\Method $initialize */
 		$initialize = $class->methods['initialize'];
 		$initialize->addBody('Doctrine\DBAL\Types\Type::addType(\'' . Types\UTCDateTime::UTC_DATETIME . '\', \'' . Types\UTCDateTime::class . '\');');
 	}
@@ -99,7 +100,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	 * @param Nette\Configurator $config
 	 * @param string $extensionName
 	 */
-	public static function register(Nette\Configurator $config, $extensionName = 'doctrineTimestampable')
+	public static function register(Nette\Configurator $config, string $extensionName = 'doctrineTimestampable')
 	{
 		$config->onCompile[] = function (Nette\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new DoctrineTimestampableExtension);

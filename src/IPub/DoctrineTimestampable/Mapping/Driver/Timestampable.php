@@ -80,6 +80,8 @@ final class Timestampable extends Nette\Object
 	/**
 	 * @param Common\Persistence\ObjectManager $objectManager
 	 * @param ORM\Mapping\ClassMetadata $classMetadata
+	 *
+	 * @return void
 	 */
 	public function loadMetadataForObjectClass(Common\Persistence\ObjectManager $objectManager, ORM\Mapping\ClassMetadata $classMetadata)
 	{
@@ -143,7 +145,7 @@ final class Timestampable extends Nette\Object
 	 * @throws Exceptions\InvalidMappingException
 	 * @throws ORM\Mapping\MappingException
 	 */
-	private function readExtendedMetadata(ORM\Mapping\ClassMetadata $metadata, array $config)
+	private function readExtendedMetadata(ORM\Mapping\ClassMetadata $metadata, array $config) : array
 	{
 		$class = $metadata->getReflectionClass();
 
@@ -221,7 +223,7 @@ final class Timestampable extends Nette\Object
 	 *
 	 * @return array
 	 */
-	public function getObjectConfigurations(Common\Persistence\ObjectManager $objectManager, $class)
+	public function getObjectConfigurations(Common\Persistence\ObjectManager $objectManager, string $class) : array
 	{
 		$config = [];
 
@@ -268,7 +270,7 @@ final class Timestampable extends Nette\Object
 	 *
 	 * @return Common\Annotations\AnnotationReader
 	 */
-	private function getDefaultAnnotationReader()
+	private function getDefaultAnnotationReader() : Common\Annotations\AnnotationReader
 	{
 		$reader = new Common\Annotations\AnnotationReader;
 
@@ -284,12 +286,12 @@ final class Timestampable extends Nette\Object
 	/**
 	 * Checks if $field type is valid
 	 *
-	 * @param object $meta
+	 * @param ORM\Mapping\ClassMetadata $meta
 	 * @param string $field
 	 *
 	 * @return boolean
 	 */
-	private function isValidField($meta, $field)
+	private function isValidField(ORM\Mapping\ClassMetadata $meta, string $field) : boolean
 	{
 		$mapping = $meta->getFieldMapping($field);
 
@@ -303,7 +305,7 @@ final class Timestampable extends Nette\Object
 	 *
 	 * @return string
 	 */
-	private static function getCacheId($className)
+	private static function getCacheId(string $className) : string
 	{
 		return $className . '\\$' . strtoupper(str_replace('\\', '_', __NAMESPACE__)) . '_CLASSMETADATA';
 	}
