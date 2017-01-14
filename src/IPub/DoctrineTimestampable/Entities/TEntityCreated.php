@@ -12,6 +12,8 @@
  * @date           06.01.15
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Entities;
 
 use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
@@ -22,7 +24,7 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
 trait TEntityCreated
 {
@@ -31,7 +33,7 @@ trait TEntityCreated
 	 *
 	 * @IPub\Timestampable(on="create")
 	 */
-	protected $createdAt;
+	private $createdAt;
 
 	/**
 	 * @param \DateTime $createdAt

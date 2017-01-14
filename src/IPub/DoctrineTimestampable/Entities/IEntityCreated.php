@@ -12,6 +12,8 @@
  * @date           06.01.15
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Entities;
 
 /**
@@ -20,7 +22,7 @@ namespace IPub\DoctrineTimestampable\Entities;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
 interface IEntityCreated
 {

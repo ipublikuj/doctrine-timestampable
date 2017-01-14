@@ -1,10 +1,10 @@
 {
 	"name"			: "ipub/doctrine-timestampable",
 	"type"			: "library",
-	"description"	: "Behavior for automate the update of timestamp fields on your Entities.",
+	"description"	: "Behavior for automate the update of timestamp fields on your entities.",
 	"keywords"		: ["nette", "timestampable", "doctrine", "tools", "ipub", "ipublikuj"],
 	"homepage"		: "https://github.com/iPublikuj/doctrine-timestampable",
-	"license"		: ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"license"		: ["GPL-2.0", "GPL-3.0"],
 
 	"authors": [
 		{
@@ -19,24 +19,32 @@
 		"issues"	:"https://github.com/iPublikuj/doctrine-timestampable/issues"
 	},
 
+	"extra": {
+		"ipub"	: {
+			"configuration" : {
+				"extensions" : {
+					"doctrineTimestampable" : "IPub\\DoctrineTimestampable\\DI\\DoctrineTimestampableExtension"
+				}
+			}
+		}
+	},
+
 	"require": {
-		"php"	: ">=5.4.0",
+		"php"	: ">=7.0.0",
 
-		"doctrine/orm"	: "~2.4",
+		"doctrine/orm"	: "~2.5",
 
-		"nette/di"		: "~2.2",
-		"nette/utils"	: "~2.2"
+		"nette/di"		: "~2.3",
+		"nette/utils"	: "~2.3"
 	},
 
 	"require-dev": {
-		"nette/bootstrap"		: "~2.2",
-		"nette/mail"			: "~2.2",
-		"nette/safe-stream"		: "~2.2",
-		"nette/robot-loader"	: "~2.2",
-		"nette/tester"			: "@dev",
+		"nette/bootstrap"		: "~2.3",
+		"nette/mail"			: "~2.3",
+		"nette/safe-stream"		: "~2.3",
+		"nette/robot-loader"	: "~2.3",
 
-		"kdyby/doctrine"		: "~3.0",
-		"kdyby/doctrine-cache"	: "~2.3",
+		"nette/tester"	: "@dev",
 
 		"tracy/tracy"	: "@dev"
 	},

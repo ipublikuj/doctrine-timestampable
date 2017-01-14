@@ -12,6 +12,8 @@
  * @date           06.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Events;
 
 use Nette;
@@ -27,20 +29,15 @@ use IPub\DoctrineTimestampable\Exceptions;
 use IPub\DoctrineTimestampable\Mapping;
 
 /**
- * Doctrine blameable subscriber
+ * Doctrine timestampable subscriber
  *
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Events
  *
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
 final class TimestampableSubscriber extends Nette\Object implements Common\EventSubscriber
 {
-	/**
-	 * Define class name
-	 */
-	const CLASS_NAME = __CLASS__;
-
 	/**
 	 * @var Mapping\Driver\Timestampable
 	 */
@@ -54,8 +51,8 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	public function getSubscribedEvents()
 	{
 		return [
-			'Doctrine\\ORM\\Event::loadClassMetadata',
-			'Doctrine\\ORM\\Event::onFlush',
+			ORM\Events::loadClassMetadata,
+			ORM\Events::onFlush,
 		];
 	}
 
@@ -315,7 +312,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 		}
 
 		return \DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''))
-			->setTimeZone(new \DateTimeZone(date_default_timezone_get()));
+			->setTimezone(new \DateTimeZone(date_default_timezone_get()));
 	}
 
 	/**

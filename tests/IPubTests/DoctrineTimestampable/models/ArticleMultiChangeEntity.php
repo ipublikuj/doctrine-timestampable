@@ -53,7 +53,7 @@ class ArticleMultiChangeEntity implements Entities\IEntityCreated, Entities\IEnt
 	 *
 	 * @IPub\Timestampable(on="change", field="type.title", value={"Published", "Deleted"})
 	 */
-	protected $publishedAt;
+	private $publishedAt;
 
 	/**
 	 * @return int

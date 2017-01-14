@@ -12,6 +12,8 @@
  * @date           06.01.15
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Types;
 
 use Doctrine;
@@ -26,15 +28,10 @@ use IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Types
  *
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
 class UTCDateTime extends Types\DateTimeType
 {
-	/**
-	 * Define class name
-	 */
-	const CLASS_NAME = __CLASS__;
-
 	/**
 	 * Define datatype name
 	 */

@@ -53,7 +53,7 @@ class ArticleEntity implements Entities\IEntityCreated, Entities\IEntityUpdated,
 	 *
 	 * @IPub\Timestampable(on="change", field="type.title", value="Published")
 	 */
-	protected $publishedAt;
+	private $publishedAt;
 
 	/**
 	 * @return int

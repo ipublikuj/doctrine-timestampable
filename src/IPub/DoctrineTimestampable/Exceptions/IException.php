@@ -12,6 +12,8 @@
  * @date           06.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Exceptions;
 
 interface IException

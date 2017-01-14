@@ -12,6 +12,8 @@
  * @date           04.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Exceptions;
 
 class UnexpectedValueException extends \UnexpectedValueException implements IException

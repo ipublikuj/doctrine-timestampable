@@ -4,13 +4,15 @@
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI
  * @since          1.0.0
  *
  * @date           06.01.16
  */
+
+declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\DI;
 
@@ -32,7 +34,7 @@ use IPub\DoctrineTimestampable\Types;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI
  *
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
 final class DoctrineTimestampableExtension extends DI\CompilerExtension
 {
@@ -55,7 +57,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 		Utils\Validators::assert($config['dbFieldType'], 'string', 'dbFieldType');
 
 		$builder->addDefinition($this->prefix('configuration'))
-			->setClass(DoctrineTimestampable\Configuration::CLASS_NAME)
+			->setClass(DoctrineTimestampable\Configuration::class)
 			->setArguments([
 				$config['lazyAssociation'],
 				$config['autoMapField'],
@@ -63,14 +65,19 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 			]);
 
 		$builder->addDefinition($this->prefix('driver'))
-			->setClass(Mapping\Driver\Timestampable::CLASS_NAME);
+			->setClass(Mapping\Driver\Timestampable::class);
 
 		$builder->addDefinition($this->prefix('subscriber'))
-			->setClass(Events\TimestampableSubscriber::CLASS_NAME);
+			->setClass(Events\TimestampableSubscriber::class);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function beforeCompile()
 	{
+		parent::beforeCompile();
+
 		$builder = $this->getContainerBuilder();
 
 		$builder->getDefinition($builder->getByType('Doctrine\ORM\EntityManagerInterface') ?: 'doctrine.default.entityManager')
@@ -78,14 +85,14 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	}
 
 	/**
-	 * @param Code\ClassType $class
+	 * {@inheritdoc}
 	 */
 	public function afterCompile(Code\ClassType $class)
 	{
 		parent::afterCompile($class);
 
 		$initialize = $class->methods['initialize'];
-		$initialize->addBody('Doctrine\DBAL\Types\Type::addType(\'' . Types\UTCDateTime::UTC_DATETIME . '\', \'' . Types\UTCDateTime::CLASS_NAME . '\');');
+		$initialize->addBody('Doctrine\DBAL\Types\Type::addType(\'' . Types\UTCDateTime::UTC_DATETIME . '\', \'' . Types\UTCDateTime::class . '\');');
 	}
 
 	/**

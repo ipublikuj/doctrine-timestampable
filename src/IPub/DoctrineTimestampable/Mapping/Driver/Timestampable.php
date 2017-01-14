@@ -12,6 +12,8 @@
  * @date           05.01.16
  */
 
+declare(strict_types = 1);
+
 namespace IPub\DoctrineTimestampable\Mapping\Driver;
 
 use Nette;
@@ -31,15 +33,10 @@ use IPub\DoctrineTimestampable\Mapping;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Driver
  *
- * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
 final class Timestampable extends Nette\Object
 {
-	/**
-	 * Define class name
-	 */
-	const CLASS_NAME = __CLASS__;
-
 	/**
 	 * Annotation field is timestampable
 	 */
