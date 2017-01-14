@@ -45,10 +45,11 @@
 		"nette/mail"			: "~2.3",
 		"nette/safe-stream"		: "~2.3",
 		"nette/robot-loader"	: "~2.3",
+		"nette/tester"			: "@dev",
 
-		"nette/tester"	: "@dev",
+		"tracy/tracy"	: "@dev",
 
-		"tracy/tracy"	: "@dev"
+		"kdyby/doctrine"	: "~3.0"
 	},
 
 	"autoload": {
