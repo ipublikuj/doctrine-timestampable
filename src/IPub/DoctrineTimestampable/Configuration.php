@@ -56,7 +56,7 @@ final class Configuration extends Nette\Object
 	 * @param bool $autoMapField
 	 * @param string $dbFieldType
 	 */
-	public function __construct($lazyAssociation = FALSE, $autoMapField = FALSE, string $dbFieldType = 'datetime')
+	public function __construct(bool $lazyAssociation = FALSE, bool $autoMapField = FALSE, string $dbFieldType = 'datetime')
 	{
 		$this->lazyAssociation = $lazyAssociation;
 		$this->autoMapField = $autoMapField;
