@@ -56,6 +56,9 @@ class TimestampableTest extends Tester\TestCase
 	 */
 	private $em;
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function setUp()
 	{
 		parent::setUp();
