@@ -3,7 +3,7 @@
  * DoctrineTimestampableExtension.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI

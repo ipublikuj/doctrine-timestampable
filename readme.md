@@ -29,4 +29,4 @@ extensions:
 Learn how to register and work with timestampable behavior in [documentation](https://github.com/iPublikuj/doctrine-timestampable/blob/master/docs/en/index.md).
 
 ***
-Homepage [http://www.ipublikuj.eu](http://www.ipublikuj.eu) and repository [http://github.com/iPublikuj/doctrine-timestampable](http://github.com/iPublikuj/doctrine-timestampable).
+Homepage [https://www.ipublikuj.eu](https://www.ipublikuj.eu) and repository [http://github.com/iPublikuj/doctrine-timestampable](http://github.com/iPublikuj/doctrine-timestampable).
