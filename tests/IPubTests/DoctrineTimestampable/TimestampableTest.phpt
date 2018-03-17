@@ -78,7 +78,7 @@ class TimestampableTest extends Tester\TestCase
 
 		Assert::true($article->getCreatedAt() instanceof \DateTime);
 		Assert::true($article->getUpdatedAt()  instanceof \DateTime);
-		Assert::equal($article->getCreatedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
+		Assert::equal($article->getCreatedAt()->format(DATE_ATOM), $article->getUpdatedAt()->format(DATE_ATOM));
 		Assert::null($article->getPublishedAt());
 	}
 
@@ -104,8 +104,8 @@ class TimestampableTest extends Tester\TestCase
 
 		$this->em->flush();
 
-		Assert::equal($createdAt->format('Ymd H:i:s'), $article->getCreatedAt()->format('Ymd H:i:s'));
-		Assert::notEqual($article->getCreatedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
+		Assert::equal($createdAt->format(DATE_ATOM), $article->getCreatedAt()->format(DATE_ATOM));
+		Assert::notEqual($article->getCreatedAt()->format(DATE_ATOM), $article->getUpdatedAt()->format(DATE_ATOM));
 		Assert::null($article->getPublishedAt());
 
 		// Wait for a second
@@ -125,8 +125,8 @@ class TimestampableTest extends Tester\TestCase
 
 		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
-		Assert::notEqual($article->getPublishedAt()->format('Ymd H:i:s'), $article->getCreatedAt()->format('Ymd H:i:s'));
-		Assert::equal($article->getPublishedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
+		Assert::notEqual($article->getPublishedAt()->format(DATE_ATOM), $article->getCreatedAt()->format(DATE_ATOM));
+		Assert::equal($article->getPublishedAt()->format(DATE_ATOM), $article->getUpdatedAt()->format(DATE_ATOM));
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
 	}
 
@@ -171,8 +171,8 @@ class TimestampableTest extends Tester\TestCase
 
 		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
-		Assert::equal($testDate, $article->getCreatedAt());
-		Assert::equal($testDate, $article->getUpdatedAt());
+		Assert::equal($testDate->format(DATE_ATOM), $article->getCreatedAt()->format(DATE_ATOM));
+		Assert::equal($testDate->format(DATE_ATOM), $article->getUpdatedAt()->format(DATE_ATOM));
 		Assert::null($article->getPublishedAt());
 
 		$published = new Models\TypeEntity;
@@ -193,7 +193,7 @@ class TimestampableTest extends Tester\TestCase
 		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
-		Assert::equal($publishedAt->format('Ymd H:i:s'), $article->getPublishedAt()->format('Ymd H:i:s'));
+		Assert::equal($publishedAt->format(DATE_ATOM), $article->getPublishedAt()->format(DATE_ATOM));
 	}
 
 	public function testMultipleValueTrackingField() : void
@@ -242,7 +242,7 @@ class TimestampableTest extends Tester\TestCase
 		$this->em->persist($article);
 		$this->em->flush();
 
-		Assert::equal($firstPublished->format('Ymd H:i:s'), $article->getPublishedAt()->format('Ymd H:i:s'));
+		Assert::equal($firstPublished->format(DATE_ATOM), $article->getPublishedAt()->format(DATE_ATOM));
 
 		// Wait for a second
 		sleep(1);
@@ -256,7 +256,7 @@ class TimestampableTest extends Tester\TestCase
 		$this->em->persist($deleted);
 		$this->em->flush();
 
-		Assert::notEqual($firstPublished->format('Ymd H:i:s'), $article->getPublishedAt()->format('Ymd H:i:s'));
+		Assert::notEqual($firstPublished->format(DATE_ATOM), $article->getPublishedAt()->format(DATE_ATOM));
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
 	}
 
