@@ -57,7 +57,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 		Utils\Validators::assert($config['dbFieldType'], 'string', 'dbFieldType');
 
 		$builder->addDefinition($this->prefix('configuration'))
-			->setClass(DoctrineTimestampable\Configuration::class)
+			->setType(DoctrineTimestampable\Configuration::class)
 			->setArguments([
 				$config['lazyAssociation'],
 				$config['autoMapField'],
@@ -65,10 +65,10 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 			]);
 
 		$builder->addDefinition($this->prefix('driver'))
-			->setClass(Mapping\Driver\Timestampable::class);
+			->setType(Mapping\Driver\Timestampable::class);
 
 		$builder->addDefinition($this->prefix('subscriber'))
-			->setClass(Events\TimestampableSubscriber::class);
+			->setType(Events\TimestampableSubscriber::class);
 	}
 
 	/**
