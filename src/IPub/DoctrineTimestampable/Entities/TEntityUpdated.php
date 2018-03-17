@@ -24,29 +24,31 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 trait TEntityUpdated
 {
 	/**
-	 * @var \DateTime
+	 * @var \DateTimeInterface|NULL
 	 *
 	 * @IPub\Timestampable(on="update")
 	 */
 	private $updatedAt;
 
 	/**
-	 * @param \DateTime $updatedAt
+	 * @param \DateTimeInterface $updatedAt
+	 *
+	 * @return void
 	 */
-	public function setUpdatedAt(\DateTime $updatedAt)
+	public function setUpdatedAt(\DateTimeInterface $updatedAt) : void
 	{
 		$this->updatedAt = $updatedAt;
 	}
 
 	/**
-	 * @return \DateTime
+	 * @return \DateTimeInterface|NULL
 	 */
-	public function getUpdatedAt()
+	public function getUpdatedAt() : ?\DateTimeInterface
 	{
 		return $this->updatedAt;
 	}

@@ -22,19 +22,19 @@ namespace IPub\DoctrineTimestampable\Entities;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 interface IEntityRemoved
 {
 	/**
-	 * @param \DateTime $deletedAt
+	 * @param \DateTimeInterface $deletedAt
 	 *
-	 * @return $this
+	 * @return void
 	 */
-	function setDeletedAt(\DateTime $deletedAt);
+	function setDeletedAt(\DateTimeInterface $deletedAt) : void;
 
 	/**
-	 * @return \DateTime
+	 * @return \DateTimeInterface|NULL
 	 */
-	function getDeletedAt();
+	function getDeletedAt() : ?\DateTimeInterface;
 }

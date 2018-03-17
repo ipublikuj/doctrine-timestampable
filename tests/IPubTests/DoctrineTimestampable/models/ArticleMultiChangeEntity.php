@@ -51,7 +51,7 @@ class ArticleMultiChangeEntity implements Entities\IEntityCreated, Entities\IEnt
 	private $type;
 
 	/**
-	 * @var mixed
+	 * @var \DateTimeInterface|NULL
 	 *
 	 * @IPub\Timestampable(on="change", field="type.title", value={"Published", "Deleted"})
 	 */
@@ -60,7 +60,7 @@ class ArticleMultiChangeEntity implements Entities\IEntityCreated, Entities\IEnt
 	/**
 	 * @return int
 	 */
-	public function getId()
+	public function getId() : int
 	{
 		return $this->id;
 	}
@@ -68,39 +68,45 @@ class ArticleMultiChangeEntity implements Entities\IEntityCreated, Entities\IEnt
 	/**
 	 * @return string
 	 */
-	public function getTitle()
+	public function getTitle() : string
 	{
 		return $this->title;
 	}
 
 	/**
 	 * @param string $title
+	 *
+	 * @return void
 	 */
-	public function setTitle($title)
+	public function setTitle(string $title) : void
 	{
 		$this->title = $title;
 	}
 
 	/**
 	 * @param TypeEntity $type
+	 *
+	 * @return void
 	 */
-	public function setType(TypeEntity $type)
+	public function setType(TypeEntity $type) : void
 	{
 		$this->type = $type;
 	}
 
 	/**
-	 * @param mixed $publishedAt
+	 * @param \DateTimeInterface|NULL $publishedAt
+	 *
+	 * @return void
 	 */
-	public function setPublishedAt($publishedAt)
+	public function setPublishedAt(?\DateTimeInterface $publishedAt) : void
 	{
 		$this->publishedAt = $publishedAt;
 	}
 
 	/**
-	 * @return mixed
+	 * @return \DateTimeInterface|NULL
 	 */
-	public function getPublishedAt()
+	public function getPublishedAt() : ?\DateTimeInterface
 	{
 		return $this->publishedAt;
 	}

@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI
  * @since          1.0.0
@@ -34,7 +34,7 @@ use IPub\DoctrineTimestampable\Types;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     DI
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 final class DoctrineTimestampableExtension extends DI\CompilerExtension
 {
@@ -47,7 +47,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 		'dbFieldType'     => 'datetime',
 	];
 
-	public function loadConfiguration()
+	public function loadConfiguration() : void
 	{
 		$config = $this->getConfig($this->defaults);
 		$builder = $this->getContainerBuilder();
@@ -74,7 +74,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	/**
 	 * {@inheritdoc}
 	 */
-	public function beforeCompile()
+	public function beforeCompile() : void
 	{
 		parent::beforeCompile();
 
@@ -87,7 +87,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	/**
 	 * {@inheritdoc}
 	 */
-	public function afterCompile(Code\ClassType $class)
+	public function afterCompile(Code\ClassType $class) : void
 	{
 		parent::afterCompile($class);
 
@@ -100,7 +100,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	 * @param Nette\Configurator $config
 	 * @param string $extensionName
 	 */
-	public static function register(Nette\Configurator $config, string $extensionName = 'doctrineTimestampable')
+	public static function register(Nette\Configurator $config, string $extensionName = 'doctrineTimestampable') : void
 	{
 		$config->onCompile[] = function (Nette\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new DoctrineTimestampableExtension);

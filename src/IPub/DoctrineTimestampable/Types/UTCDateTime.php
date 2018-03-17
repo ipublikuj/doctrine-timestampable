@@ -28,14 +28,14 @@ use IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Types
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class UTCDateTime extends Types\DateTimeType
 {
 	/**
 	 * Define datatype name
 	 */
-	const UTC_DATETIME = 'utcdatetime';
+	public const UTC_DATETIME = 'utcdatetime';
 
 	/**
 	 * @var \DateTimeZone|NULL
@@ -45,7 +45,7 @@ class UTCDateTime extends Types\DateTimeType
 	/**
 	 * @return string
 	 */
-	public function getName()
+	public function getName() : string
 	{
 		return self::UTC_DATETIME;
 	}
@@ -54,11 +54,11 @@ class UTCDateTime extends Types\DateTimeType
 	 * @param mixed $value
 	 * @param Platforms\AbstractPlatform $platform
 	 *
-	 * @return \DateTime|NULL
+	 * @return \DateTimeInterface|NULL
 	 *
 	 * @throws Types\ConversionException
 	 */
-	public function convertToPHPValue($value, Platforms\AbstractPlatform $platform)
+	public function convertToPHPValue($value, Platforms\AbstractPlatform $platform) : ?\DateTimeInterface
 	{
 		if ($value === NULL) {
 			return NULL;
@@ -83,7 +83,7 @@ class UTCDateTime extends Types\DateTimeType
 	 *
 	 * @return string|NULL
 	 */
-	public function convertToDatabaseValue($value, Platforms\AbstractPlatform $platform)
+	public function convertToDatabaseValue($value, Platforms\AbstractPlatform $platform) : ?string
 	{
 		if ($value === NULL) {
 			return NULL;

@@ -42,7 +42,7 @@ require_once __DIR__ . DS . 'models' . DS . 'TypeEntity.php';
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Tests
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class TimestampableTest extends Tester\TestCase
 {
@@ -59,7 +59,7 @@ class TimestampableTest extends Tester\TestCase
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function setUp()
+	protected function setUp() : void
 	{
 		parent::setUp();
 
@@ -67,7 +67,7 @@ class TimestampableTest extends Tester\TestCase
 		$this->em = $this->container->getByType('Kdyby\Doctrine\EntityManager');
 	}
 
-	public function testCreate()
+	public function testCreate() : void
 	{
 		$this->generateDbSchema();
 
@@ -82,7 +82,7 @@ class TimestampableTest extends Tester\TestCase
 		Assert::null($article->getPublishedAt());
 	}
 
-	public function testUpdate()
+	public function testUpdate() : void
 	{
 		$this->generateDbSchema();
 
@@ -99,7 +99,7 @@ class TimestampableTest extends Tester\TestCase
 		// Wait for a second
 		sleep(1);
 
-		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
+		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 		$article->setTitle('Updated title'); // Need to modify at least one column to trigger onUpdate
 
 		$this->em->flush();
@@ -123,14 +123,14 @@ class TimestampableTest extends Tester\TestCase
 
 		$id = $article->getId();
 
-		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
+		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
 		Assert::notEqual($article->getPublishedAt()->format('Ymd H:i:s'), $article->getCreatedAt()->format('Ymd H:i:s'));
 		Assert::equal($article->getPublishedAt()->format('Ymd H:i:s'), $article->getUpdatedAt()->format('Ymd H:i:s'));
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
 	}
 
-	public function testRemove()
+	public function testRemove() : void
 	{
 		$this->generateDbSchema();
 
@@ -143,7 +143,7 @@ class TimestampableTest extends Tester\TestCase
 
 		$this->em->clear();
 
-		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
+		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
 		$this->em->remove($article);
 		$this->em->flush();
@@ -152,7 +152,7 @@ class TimestampableTest extends Tester\TestCase
 		Assert::true($article->getDeletedAt() instanceof \DateTime);
 	}
 
-	public function testForcedValues()
+	public function testForcedValues() : void
 	{
 		$this->generateDbSchema();
 
@@ -169,7 +169,7 @@ class TimestampableTest extends Tester\TestCase
 
 		$id = $article->getId();
 
-		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
+		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
 		Assert::equal($testDate, $article->getCreatedAt());
 		Assert::equal($testDate, $article->getUpdatedAt());
@@ -190,13 +190,13 @@ class TimestampableTest extends Tester\TestCase
 
 		$id = $article->getId();
 
-		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleEntity')->find($id);
+		$article = $this->em->getRepository(Models\ArticleEntity::class)->find($id);
 
 		Assert::true($article->getPublishedAt() instanceof \DateTime);
 		Assert::equal($publishedAt->format('Ymd H:i:s'), $article->getPublishedAt()->format('Ymd H:i:s'));
 	}
 
-	public function testMultipleValueTrackingField()
+	public function testMultipleValueTrackingField() : void
 	{
 		$this->generateDbSchema();
 
@@ -207,7 +207,7 @@ class TimestampableTest extends Tester\TestCase
 
 		$id = $article->getId();
 
-		$article = $this->em->getRepository('IPubTests\DoctrineTimestampable\Models\ArticleMultiChangeEntity')->find($id);
+		$article = $this->em->getRepository(Models\ArticleMultiChangeEntity::class)->find($id);
 
 		Assert::true($article->getCreatedAt() instanceof \DateTime);
 		Assert::true($article->getUpdatedAt() instanceof \DateTime);
@@ -265,7 +265,7 @@ class TimestampableTest extends Tester\TestCase
 	 *
 	 * @throws ORM\Tools\ToolsException
 	 */
-	private function generateDbSchema()
+	private function generateDbSchema() : void
 	{
 		$schema = new ORM\Tools\SchemaTool($this->em);
 		$schema->createSchema($this->em->getMetadataFactory()->getAllMetadata());

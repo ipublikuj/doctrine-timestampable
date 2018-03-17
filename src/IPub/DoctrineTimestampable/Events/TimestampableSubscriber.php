@@ -23,7 +23,6 @@ use Doctrine;
 use Doctrine\Common;
 use Doctrine\ORM;
 
-use IPub;
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Exceptions;
 use IPub\DoctrineTimestampable\Mapping;
@@ -34,10 +33,15 @@ use IPub\DoctrineTimestampable\Mapping;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Events
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-final class TimestampableSubscriber extends Nette\Object implements Common\EventSubscriber
+final class TimestampableSubscriber implements Common\EventSubscriber
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * @var Mapping\Driver\Timestampable
 	 */
@@ -46,7 +50,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	/**
 	 * Register events
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getSubscribedEvents() : array
 	{
@@ -72,7 +76,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @throws Exceptions\InvalidMappingException
 	 */
-	public function loadClassMetadata(ORM\Event\LoadClassMetadataEventArgs $eventArgs)
+	public function loadClassMetadata(ORM\Event\LoadClassMetadataEventArgs $eventArgs) : void
 	{
 		/** @var ORM\Mapping\ClassMetadata $classMetadata */
 		$classMetadata = $eventArgs->getClassMetadata();
@@ -93,7 +97,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @throws Exceptions\UnexpectedValueException
 	 */
-	public function onFlush(ORM\Event\OnFlushEventArgs $eventArgs)
+	public function onFlush(ORM\Event\OnFlushEventArgs $eventArgs) : void
 	{
 		$em = $eventArgs->getEntityManager();
 		$uow = $em->getUnitOfWork();
@@ -210,7 +214,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return void
 	 */
-	public function prePersist($entity, ORM\Event\LifecycleEventArgs $eventArgs)
+	public function prePersist($entity, ORM\Event\LifecycleEventArgs $eventArgs) : void
 	{
 		$em = $eventArgs->getEntityManager();
 		$uow = $em->getUnitOfWork();
@@ -231,7 +235,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return void
 	 */
-	public function preUpdate($entity, ORM\Event\LifecycleEventArgs $eventArgs)
+	public function preUpdate($entity, ORM\Event\LifecycleEventArgs $eventArgs) : void
 	{
 		$em = $eventArgs->getEntityManager();
 		$uow = $em->getUnitOfWork();
@@ -250,7 +254,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return void
 	 */
-	public function preRemove($entity, ORM\Event\LifecycleEventArgs $eventArgs)
+	public function preRemove($entity, ORM\Event\LifecycleEventArgs $eventArgs) : void
 	{
 		$em = $eventArgs->getEntityManager();
 		$uow = $em->getUnitOfWork();
@@ -271,7 +275,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return void
 	 */
-	private function updateFields(array $fields, ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata)
+	private function updateFields(array $fields, ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata) : void
 	{
 		foreach ($fields as $field) {
 			if ($classMetadata->getReflectionProperty($field)->getValue($object) === NULL) { // let manual values
@@ -290,7 +294,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @return void
 	 */
-	private function updateField(ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata, string $field)
+	private function updateField(ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata, string $field) : void
 	{
 		$property = $classMetadata->getReflectionProperty($field);
 
@@ -337,7 +341,7 @@ final class TimestampableSubscriber extends Nette\Object implements Common\Event
 	 *
 	 * @throws ORM\Mapping\MappingException
 	 */
-	private function registerEvent(ORM\Mapping\ClassMetadata $classMetadata, string $eventName)
+	private function registerEvent(ORM\Mapping\ClassMetadata $classMetadata, string $eventName) : void
 	{
 		if (!$this->hasRegisteredListener($classMetadata, $eventName, get_called_class())) {
 			$classMetadata->addEntityListener($eventName, get_called_class(), $eventName);

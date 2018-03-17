@@ -22,7 +22,6 @@ use Doctrine;
 use Doctrine\Common;
 use Doctrine\ORM;
 
-use IPub;
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Exceptions;
 use IPub\DoctrineTimestampable\Mapping;
@@ -33,14 +32,19 @@ use IPub\DoctrineTimestampable\Mapping;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Driver
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-final class Timestampable extends Nette\Object
+final class Timestampable
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * Annotation field is timestampable
 	 */
-	const EXTENSION_ANNOTATION = 'IPub\DoctrineTimestampable\Mapping\Annotation\Timestampable';
+	private const EXTENSION_ANNOTATION = 'IPub\DoctrineTimestampable\Mapping\Annotation\Timestampable';
 
 	/**
 	 * @var DoctrineTimestampable\Configuration
@@ -73,7 +77,8 @@ final class Timestampable extends Nette\Object
 	/**
 	 * @param DoctrineTimestampable\Configuration $configuration
 	 */
-	public function __construct(DoctrineTimestampable\Configuration $configuration) {
+	public function __construct(DoctrineTimestampable\Configuration $configuration)
+	{
 		$this->configuration = $configuration;
 	}
 
@@ -83,7 +88,7 @@ final class Timestampable extends Nette\Object
 	 *
 	 * @return void
 	 */
-	public function loadMetadataForObjectClass(Common\Persistence\ObjectManager $objectManager, ORM\Mapping\ClassMetadata $classMetadata)
+	public function loadMetadataForObjectClass(Common\Persistence\ObjectManager $objectManager, ORM\Mapping\ClassMetadata $classMetadata) : void
 	{
 		if ($classMetadata->isMappedSuperclass) {
 			return; // Ignore mappedSuperclasses for now
@@ -232,7 +237,7 @@ final class Timestampable extends Nette\Object
 
 		} else {
 			$metadataFactory = $objectManager->getMetadataFactory();
-			/** @var Common\Cache\Cache $cacheDriver|NULL */
+			/** @var Common\Cache\Cache $cacheDriver |NULL */
 			$cacheDriver = $metadataFactory->getCacheDriver();
 
 			if ($cacheDriver !== NULL) {

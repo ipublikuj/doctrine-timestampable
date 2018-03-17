@@ -24,29 +24,31 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 trait TEntityRemoved
 {
 	/**
-	 * @var \DateTime
+	 * @var \DateTimeInterface|NULL
 	 *
 	 * @IPub\Timestampable(on="delete")
 	 */
 	private $deletedAt;
 
 	/**
-	 * @param \DateTime $deletedAt
+	 * @param \DateTimeInterface $deletedAt
+	 *
+	 * @return void
 	 */
-	public function setDeletedAt(\DateTime $deletedAt)
+	public function setDeletedAt(\DateTimeInterface $deletedAt) : void
 	{
 		$this->deletedAt = $deletedAt;
 	}
 
 	/**
-	 * @return \DateTime
+	 * @return \DateTimeInterface|NULL
 	 */
-	public function getDeletedAt()
+	public function getDeletedAt() : ?\DateTimeInterface
 	{
 		return $this->deletedAt;
 	}

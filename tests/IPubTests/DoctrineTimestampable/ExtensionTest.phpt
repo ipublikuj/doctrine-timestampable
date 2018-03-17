@@ -33,11 +33,11 @@ require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Tests
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 class ExtensionTest extends Tester\TestCase
 {
-	public function testFunctional()
+	public function testFunctional() : void
 	{
 		$dic = $this->createContainer();
 

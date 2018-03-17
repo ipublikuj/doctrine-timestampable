@@ -22,19 +22,19 @@ namespace IPub\DoctrineTimestampable\Entities;
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Entities
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
 interface IEntityUpdated
 {
 	/**
-	 * @param \DateTime $updatedAt
+	 * @param \DateTimeInterface $updatedAt
 	 *
-	 * @return $this
+	 * @return void
 	 */
-	function setUpdatedAt(\DateTime $updatedAt);
+	function setUpdatedAt(\DateTimeInterface $updatedAt) : void;
 
 	/**
-	 * @return \DateTime
+	 * @return \DateTimeInterface|NULL
 	 */
-	function getUpdatedAt();
+	function getUpdatedAt() : ?\DateTimeInterface;
 }
