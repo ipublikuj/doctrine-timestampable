@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        https://www.ipublikuj.eu
- * @author         Adam Kadlec https://www.ipublikuj.eu
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:DoctrineTimestampable!
  * @subpackage     Events
  * @since          1.0.0
@@ -17,13 +17,10 @@ declare(strict_types = 1);
 namespace IPub\DoctrineTimestampable\Events;
 
 use Nette;
-use Nette\Utils;
 
-use Doctrine;
 use Doctrine\Common;
 use Doctrine\ORM;
 
-use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Exceptions;
 use IPub\DoctrineTimestampable\Mapping;
 
@@ -74,7 +71,8 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 *
 	 * @return void
 	 *
-	 * @throws Exceptions\InvalidMappingException
+	 * @throws Common\Annotations\AnnotationException
+	 * @throws ORM\Mapping\MappingException
 	 */
 	public function loadClassMetadata(ORM\Event\LoadClassMetadataEventArgs $eventArgs) : void
 	{
@@ -95,7 +93,8 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 *
 	 * @return void
 	 *
-	 * @throws Exceptions\UnexpectedValueException
+	 * @throws Common\Annotations\AnnotationException
+	 * @throws ORM\Mapping\MappingException
 	 */
 	public function onFlush(ORM\Event\OnFlushEventArgs $eventArgs) : void
 	{
@@ -213,6 +212,9 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @param ORM\Event\LifecycleEventArgs $eventArgs
 	 *
 	 * @return void
+	 *
+	 * @throws Common\Annotations\AnnotationException
+	 * @throws ORM\Mapping\MappingException
 	 */
 	public function prePersist($entity, ORM\Event\LifecycleEventArgs $eventArgs) : void
 	{
@@ -234,6 +236,9 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @param ORM\Event\LifecycleEventArgs $eventArgs
 	 *
 	 * @return void
+	 *
+	 * @throws Common\Annotations\AnnotationException
+	 * @throws ORM\Mapping\MappingException
 	 */
 	public function preUpdate($entity, ORM\Event\LifecycleEventArgs $eventArgs) : void
 	{
@@ -253,6 +258,9 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @param ORM\Event\LifecycleEventArgs $eventArgs
 	 *
 	 * @return void
+	 *
+	 * @throws Common\Annotations\AnnotationException
+	 * @throws ORM\Mapping\MappingException
 	 */
 	public function preRemove($entity, ORM\Event\LifecycleEventArgs $eventArgs) : void
 	{
@@ -274,6 +282,8 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @param ORM\Mapping\ClassMetadata $classMetadata
 	 *
 	 * @return void
+	 *
+	 * @throws ORM\Mapping\MappingException
 	 */
 	private function updateFields(array $fields, ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata) : void
 	{
@@ -293,6 +303,8 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @param string $field
 	 *
 	 * @return void
+	 *
+	 * @throws ORM\Mapping\MappingException
 	 */
 	private function updateField(ORM\UnitOfWork $uow, $object, ORM\Mapping\ClassMetadata $classMetadata, string $field) : void
 	{
@@ -316,6 +328,8 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @param string $field
 	 *
 	 * @return mixed
+	 *
+	 * @throws ORM\Mapping\MappingException
 	 */
 	private function getDateValue(ORM\Mapping\ClassMetadata $classMetadata, string $field)
 	{

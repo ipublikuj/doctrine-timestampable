@@ -16,8 +16,6 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\DI;
 
-use Doctrine;
-
 use Nette;
 use Nette\DI;
 use Nette\PhpGenerator as Code;
@@ -47,6 +45,11 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 		'dbFieldType'     => 'datetime',
 	];
 
+	/**
+	 * @return void
+	 *
+	 * @throws Utils\AssertionException
+	 */
 	public function loadConfiguration() : void
 	{
 		$config = $this->getConfig($this->defaults);
