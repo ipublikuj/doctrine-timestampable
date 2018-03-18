@@ -22,13 +22,9 @@ use Nette;
 use Tester;
 use Tester\Assert;
 
-use Doctrine;
 use Doctrine\ORM;
-use Doctrine\Common;
 
-use IPub;
 use IPub\DoctrineTimestampable;
-use IPub\DoctrineTimestampable\Events;
 use IPub\DoctrineTimestampable\Mapping;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';

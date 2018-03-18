@@ -19,8 +19,6 @@ namespace IPub\DoctrineTimestampable\Types;
 use Doctrine\DBAL\Platforms;
 use Doctrine\DBAL\Types;
 
-use IPub;
-
 /**
  * Doctrine phone data type
  *
