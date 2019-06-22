@@ -33,7 +33,7 @@ trait TEntityUpdated
 	 *
 	 * @IPub\Timestampable(on="update")
 	 */
-	private $updatedAt;
+	protected $updatedAt;
 
 	/**
 	 * @param \DateTimeInterface $updatedAt

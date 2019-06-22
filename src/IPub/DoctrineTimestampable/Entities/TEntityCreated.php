@@ -33,7 +33,7 @@ trait TEntityCreated
 	 *
 	 * @IPub\Timestampable(on="create")
 	 */
-	private $createdAt;
+	protected $createdAt;
 
 	/**
 	 * @param \DateTimeInterface $createdAt

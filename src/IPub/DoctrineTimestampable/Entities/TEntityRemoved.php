@@ -33,7 +33,7 @@ trait TEntityRemoved
 	 *
 	 * @IPub\Timestampable(on="delete")
 	 */
-	private $deletedAt;
+	protected $deletedAt;
 
 	/**
 	 * @param \DateTimeInterface $deletedAt
