@@ -1,61 +1,73 @@
 {
-	"name"			: "ipub/doctrine-timestampable",
-	"type"			: "library",
-	"description"	: "Behavior for automate the update of timestamp fields on your entities.",
-	"keywords"		: ["nette", "timestampable", "doctrine", "tools", "ipub", "ipublikuj"],
-	"homepage"		: "https://github.com/iPublikuj/doctrine-timestampable",
-	"license"		: ["GPL-2.0", "GPL-3.0"],
+  "name" : "ipub/doctrine-timestampable",
+  "type" : "library",
+  "description" : "Behavior for automate the update of timestamp fields on your entities.",
+  "keywords" : [
+    "nette",
+    "timestampable",
+    "doctrine",
+    "tools",
+    "ipub",
+    "ipublikuj"
+  ],
+  "homepage" : "https://github.com/iPublikuj/doctrine-timestampable",
+  "license" : [
+    "GPL-2.0",
+    "GPL-3.0"
+  ],
 
-	"authors": [
-		{
-			"name"		: "iPublikuj:cms",
-			"email"		: "info@ipublikuj.eu",
-			"homepage"	: "https://www.ipublikuj.eu/"
-		}
-	],
+  "authors" : [
+    {
+      "name" : "iPublikuj:cms",
+      "email" : "info@ipublikuj.eu",
+      "homepage" : "https://www.ipublikuj.eu/"
+    }
+  ],
 
-	"support": {
-		"email"		:"support@ipublikuj.eu",
-		"issues"	:"https://github.com/iPublikuj/doctrine-timestampable/issues"
-	},
+  "support" : {
+    "email" : "support@ipublikuj.eu",
+    "issues" : "https://github.com/iPublikuj/doctrine-timestampable/issues"
+  },
 
-	"extra": {
-		"ipub"	: {
-			"configuration" : {
-				"extensions" : {
-					"doctrineTimestampable" : "IPub\\DoctrineTimestampable\\DI\\DoctrineTimestampableExtension"
-				}
-			}
-		}
-	},
+  "extra" : {
+    "ipub" : {
+      "configuration" : {
+        "extensions" : {
+          "doctrineTimestampable" : "IPub\\DoctrineTimestampable\\DI\\DoctrineTimestampableExtension"
+        }
+      }
+    }
+  },
 
-	"require": {
-		"php"	: ">=7.1.0",
+  "require" : {
+    "php" : ">=7.2.0",
 
-		"doctrine/orm"	: "~2.5",
+    "doctrine/orm" : "~2.5",
 
-		"nette/di"			: "~2.4",
-		"nette/utils"		: "~2.4",
-		"nette/reflection"	: "~2.4"
-	},
+    "nette/di" : "~2.4 || ~3.0",
+    "nette/utils" : "~2.5 || ~3.0",
+    "nette/reflection" : "~2.4"
+  },
 
-	"require-dev": {
-		"nette/bootstrap"		: "~2.4",
-		"nette/mail"			: "~2.4",
-		"nette/robot-loader"	: "~2.4",
-		"nette/safe-stream"		: "~2.3",
-		"nette/tester"			: "~2.0",
+  "require-dev" : {
+    "nette/bootstrap" : "~2.4 || ~3.0",
+    "nette/mail" : "~2.4 || ~3.0",
+    "nette/robot-loader" : "~2.4 || ~3.0",
+    "nette/safe-stream" : "~2.3",
+    "nette/tester" : "~2.3",
 
-		"tracy/tracy"	: "~2.4",
+    "nette/http" : "~2.4",
 
-		"pds/skeleton"	: "~1.0",
+    "tracy/tracy" : "~2.4",
 
-		"kdyby/doctrine"	: "^3.3"
-	},
+    "pds/skeleton" : "~1.0",
 
-	"autoload": {
-		"psr-0": {
-			"IPub\\DoctrineTimestampable\\": "src/"
-		}
-	}
+    "kdyby/doctrine" : "^3.3"
+  },
+
+  "autoload" : {
+    "psr-0" : {
+      "IPub\\DoctrineTimestampable\\" : "src/"
+    }
+  }
 }
