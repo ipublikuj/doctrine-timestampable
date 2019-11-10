@@ -24,6 +24,8 @@ use Tester\Assert;
 
 use Doctrine\ORM;
 
+use Nettrine;
+
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Mapping;
 
@@ -60,7 +62,7 @@ class TimestampableTest extends Tester\TestCase
 		parent::setUp();
 
 		$this->container = $this->createContainer();
-		$this->em = $this->container->getByType('Kdyby\Doctrine\EntityManager');
+		$this->em = $this->container->getByType(Nettrine\ORM\EntityManagerDecorator::class);
 	}
 
 	public function testCreate() : void
