@@ -52,19 +52,25 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	 */
 	public function loadConfiguration() : void
 	{
-		$config = $this->getConfig($this->defaults);
+		// Get container builder
 		$builder = $this->getContainerBuilder();
 
-		Utils\Validators::assert($config['lazyAssociation'], 'bool', 'lazyAssociation');
-		Utils\Validators::assert($config['autoMapField'], 'bool', 'autoMapField');
-		Utils\Validators::assert($config['dbFieldType'], 'string', 'dbFieldType');
+		// Merge extension default config
+		$this->setConfig(DI\Config\Helpers::merge($this->config, DI\Helpers::expand($this->defaults, $builder->parameters)));
+
+		// Get extension configuration
+		$configuration = $this->getConfig();
+
+		Utils\Validators::assert($configuration['lazyAssociation'], 'bool', 'lazyAssociation');
+		Utils\Validators::assert($configuration['autoMapField'], 'bool', 'autoMapField');
+		Utils\Validators::assert($configuration['dbFieldType'], 'string', 'dbFieldType');
 
 		$builder->addDefinition($this->prefix('configuration'))
 			->setType(DoctrineTimestampable\Configuration::class)
 			->setArguments([
-				$config['lazyAssociation'],
-				$config['autoMapField'],
-				$config['dbFieldType'],
+				$configuration['lazyAssociation'],
+				$configuration['autoMapField'],
+				$configuration['dbFieldType'],
 			]);
 
 		$builder->addDefinition($this->prefix('driver'))
@@ -83,7 +89,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 
 		$builder = $this->getContainerBuilder();
 
-		$builder->getDefinition($builder->getByType('Doctrine\ORM\EntityManagerInterface') ?: 'doctrine.default.entityManager')
+		$builder->getDefinition($builder->getByType('Doctrine\ORM\EntityManagerInterface', TRUE))
 			->addSetup('?->getEventManager()->addEventSubscriber(?)', ['@self', $builder->getDefinition($this->prefix('subscriber'))]);
 	}
 
