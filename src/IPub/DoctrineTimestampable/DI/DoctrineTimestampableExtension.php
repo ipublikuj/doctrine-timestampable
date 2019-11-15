@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\DI;
 
+use Doctrine;
+
 use Nette;
 use Nette\DI;
 use Nette\PhpGenerator as Code;
