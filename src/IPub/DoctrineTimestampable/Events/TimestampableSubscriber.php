@@ -223,7 +223,7 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 		$classMetadata = $em->getClassMetadata(get_class($entity));
 
 		if ($config = $this->driver->getObjectConfigurations($em, $classMetadata->getName())) {
-			foreach(['update', 'create'] as $event) {
+			foreach (['update', 'create'] as $event) {
 				if (isset($config[$event])) {
 					$this->updateFields($config[$event], $uow, $entity, $classMetadata);
 				}
@@ -343,7 +343,7 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 			return new \Zend_Date();
 		}
 
-		return \DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''))
+		return \DateTime::createFromFormat('U.u', number_format(microtime(TRUE), 6, '.', ''))
 			->setTimezone(new \DateTimeZone(date_default_timezone_get()));
 	}
 

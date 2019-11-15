@@ -54,12 +54,12 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	{
 		// Get container builder
 		$builder = $this->getContainerBuilder();
-
-		// Merge extension default config
-		$this->setConfig(DI\Config\Helpers::merge($this->config, DI\Helpers::expand($this->defaults, $builder->parameters)));
-
-		// Get extension configuration
-		$configuration = $this->getConfig();
+		/** @var array $configuration */
+		if (method_exists($this, 'validateConfig')) {
+			$configuration = $this->validateConfig($this->defaults);
+		} else {
+			$configuration = $this->getConfig($this->defaults);
+		}
 
 		Utils\Validators::assert($configuration['lazyAssociation'], 'bool', 'lazyAssociation');
 		Utils\Validators::assert($configuration['autoMapField'], 'bool', 'autoMapField');
@@ -89,7 +89,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 
 		$builder = $this->getContainerBuilder();
 
-		$builder->getDefinition($builder->getByType('Doctrine\ORM\EntityManagerInterface', TRUE))
+		$builder->getDefinition($builder->getByType(Doctrine\ORM\EntityManagerInterface::class, TRUE))
 			->addSetup('?->getEventManager()->addEventSubscriber(?)', ['@self', $builder->getDefinition($this->prefix('subscriber'))]);
 	}
 
