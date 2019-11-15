@@ -31,10 +31,10 @@ interface IEntityRemoved
 	 *
 	 * @return void
 	 */
-	function setDeletedAt(\DateTimeInterface $deletedAt) : void;
+	public function setDeletedAt(\DateTimeInterface $deletedAt) : void;
 
 	/**
 	 * @return \DateTimeInterface|NULL
 	 */
-	function getDeletedAt() : ?\DateTimeInterface;
+	public function getDeletedAt() : ?\DateTimeInterface;
 }

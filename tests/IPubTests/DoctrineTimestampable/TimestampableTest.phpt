@@ -1,6 +1,7 @@
 <?php
 /**
  * Test: IPub\DoctrineTimestampable\Timestampable
+ *
  * @testCase
  *
  * @copyright      More in license.md
@@ -75,7 +76,7 @@ class TimestampableTest extends Tester\TestCase
 		$this->em->flush();
 
 		Assert::true($article->getCreatedAt() instanceof \DateTime);
-		Assert::true($article->getUpdatedAt()  instanceof \DateTime);
+		Assert::true($article->getUpdatedAt() instanceof \DateTime);
 		Assert::equal($article->getCreatedAt()->format(DATE_ATOM), $article->getUpdatedAt()->format(DATE_ATOM));
 		Assert::null($article->getPublishedAt());
 	}

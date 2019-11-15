@@ -31,10 +31,10 @@ interface IEntityCreated
 	 *
 	 * @return void
 	 */
-	function setCreatedAt(\DateTimeInterface $createdAt) : void;
+	public function setCreatedAt(\DateTimeInterface $createdAt) : void;
 
 	/**
 	 * @return \DateTimeInterface|NULL
 	 */
-	function getCreatedAt() : ?\DateTimeInterface;
+	public function getCreatedAt() : ?\DateTimeInterface;
 }

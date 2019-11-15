@@ -1,6 +1,7 @@
 <?php
 /**
  * Test: IPub\DoctrineTimestampable\Extension
+ *
  * @testCase
  *
  * @copyright      More in license.md

@@ -31,10 +31,10 @@ interface IEntityUpdated
 	 *
 	 * @return void
 	 */
-	function setUpdatedAt(\DateTimeInterface $updatedAt) : void;
+	public function setUpdatedAt(\DateTimeInterface $updatedAt) : void;
 
 	/**
 	 * @return \DateTimeInterface|NULL
 	 */
-	function getUpdatedAt() : ?\DateTimeInterface;
+	public function getUpdatedAt() : ?\DateTimeInterface;
 }
