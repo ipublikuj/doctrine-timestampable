@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Entities;
 
+use DateTimeInterface;
+
 /**
  * Doctrine timestampable removing entity interface
  *
@@ -27,14 +29,14 @@ namespace IPub\DoctrineTimestampable\Entities;
 interface IEntityRemoved
 {
 	/**
-	 * @param \DateTimeInterface $deletedAt
+	 * @param DateTimeInterface $deletedAt
 	 *
 	 * @return void
 	 */
-	public function setDeletedAt(\DateTimeInterface $deletedAt) : void;
+	public function setDeletedAt(DateTimeInterface $deletedAt) : void;
 
 	/**
-	 * @return \DateTimeInterface|NULL
+	 * @return DateTimeInterface|NULL
 	 */
-	public function getDeletedAt() : ?\DateTimeInterface;
+	public function getDeletedAt() : ?DateTimeInterface;
 }

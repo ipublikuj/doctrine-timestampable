@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Entities;
 
+use DateTimeInterface;
+
 /**
  * Doctrine timestampable modifying entity interface
  *
@@ -27,14 +29,14 @@ namespace IPub\DoctrineTimestampable\Entities;
 interface IEntityUpdated
 {
 	/**
-	 * @param \DateTimeInterface $updatedAt
+	 * @param DateTimeInterface $updatedAt
 	 *
 	 * @return void
 	 */
-	public function setUpdatedAt(\DateTimeInterface $updatedAt) : void;
+	public function setUpdatedAt(DateTimeInterface $updatedAt) : void;
 
 	/**
-	 * @return \DateTimeInterface|NULL
+	 * @return DateTimeInterface|NULL
 	 */
-	public function getUpdatedAt() : ?\DateTimeInterface;
+	public function getUpdatedAt() : ?DateTimeInterface;
 }

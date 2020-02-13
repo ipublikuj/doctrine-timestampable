@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Entities;
 
+use DateTimeInterface;
+
 /**
  * Doctrine timestampable creating entity interface
  *
@@ -27,14 +29,14 @@ namespace IPub\DoctrineTimestampable\Entities;
 interface IEntityCreated
 {
 	/**
-	 * @param \DateTimeInterface $createdAt
+	 * @param DateTimeInterface $createdAt
 	 *
 	 * @return void
 	 */
-	public function setCreatedAt(\DateTimeInterface $createdAt) : void;
+	public function setCreatedAt(DateTimeInterface $createdAt) : void;
 
 	/**
-	 * @return \DateTimeInterface|NULL
+	 * @return DateTimeInterface|NULL
 	 */
-	public function getCreatedAt() : ?\DateTimeInterface;
+	public function getCreatedAt() : ?DateTimeInterface;
 }
