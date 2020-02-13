@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Entities;
 
+use DateTimeInterface;
+
 use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 
 /**
@@ -29,26 +31,26 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 trait TEntityCreated
 {
 	/**
-	 * @var \DateTimeInterface|NULL
+	 * @var DateTimeInterface|NULL
 	 *
 	 * @IPub\Timestampable(on="create")
 	 */
 	protected $createdAt;
 
 	/**
-	 * @param \DateTimeInterface $createdAt
+	 * @param DateTimeInterface $createdAt
 	 *
 	 * @return void
 	 */
-	public function setCreatedAt(\DateTimeInterface $createdAt) : void
+	public function setCreatedAt(DateTimeInterface $createdAt) : void
 	{
 		$this->createdAt = $createdAt;
 	}
 
 	/**
-	 * @return \DateTimeInterface|NULL
+	 * @return DateTimeInterface|NULL
 	 */
-	public function getCreatedAt() : ?\DateTimeInterface
+	public function getCreatedAt() : ?DateTimeInterface
 	{
 		return $this->createdAt;
 	}

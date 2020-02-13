@@ -21,7 +21,7 @@ use Doctrine;
 use Nette;
 use Nette\DI;
 use Nette\PhpGenerator as Code;
-use Nette\Utils;
+use Nette\Schema;
 
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Events;
@@ -39,40 +39,31 @@ use IPub\DoctrineTimestampable\Types;
 final class DoctrineTimestampableExtension extends DI\CompilerExtension
 {
 	/**
-	 * @var array
+	 * {@inheritdoc}
 	 */
-	private $defaults = [
-		'lazyAssociation' => FALSE,
-		'autoMapField'    => TRUE,
-		'dbFieldType'     => 'datetime',
-	];
+	public function getConfigSchema() : Schema\Schema
+	{
+		return Schema\Expect::structure([
+			'lazyAssociation' => Schema\Expect::bool(FALSE),
+			'automapField'    => Schema\Expect::bool(TRUE),
+			'dbFieldType'     => Schema\Expect::string('datetime'),
+		]);
+	}
 
 	/**
-	 * @return void
-	 *
-	 * @throws Utils\AssertionException
+	 * {@inheritdoc}
 	 */
 	public function loadConfiguration() : void
 	{
-		// Get container builder
 		$builder = $this->getContainerBuilder();
-		/** @var array $configuration */
-		if (method_exists($this, 'validateConfig')) {
-			$configuration = $this->validateConfig($this->defaults);
-		} else {
-			$configuration = $this->getConfig($this->defaults);
-		}
-
-		Utils\Validators::assert($configuration['lazyAssociation'], 'bool', 'lazyAssociation');
-		Utils\Validators::assert($configuration['autoMapField'], 'bool', 'autoMapField');
-		Utils\Validators::assert($configuration['dbFieldType'], 'string', 'dbFieldType');
+		$configuration = $this->getConfig();
 
 		$builder->addDefinition($this->prefix('configuration'))
 			->setType(DoctrineTimestampable\Configuration::class)
 			->setArguments([
-				$configuration['lazyAssociation'],
-				$configuration['autoMapField'],
-				$configuration['dbFieldType'],
+				$configuration->lazyAssociation,
+				$configuration->autoMapField,
+				$configuration->dbFieldType,
 			]);
 
 		$builder->addDefinition($this->prefix('driver'))
@@ -104,15 +95,23 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 
 		/** @var Code\Method $initialize */
 		$initialize = $class->methods['initialize'];
-		$initialize->addBody('Doctrine\DBAL\Types\Type::addType(\'' . Types\UTCDateTime::UTC_DATETIME . '\', \'' . Types\UTCDateTime::class . '\');');
+		$initialize->addBody(
+			'Doctrine\DBAL\Types\Type::addType(?, ?);',
+			[
+				Types\UTCDateTime::UTC_DATETIME,
+				Types\UTCDateTime::class,
+			]
+		);
 	}
 
 	/**
 	 * @param Nette\Configurator $config
 	 * @param string $extensionName
 	 */
-	public static function register(Nette\Configurator $config, string $extensionName = 'doctrineTimestampable') : void
-	{
+	public static function register(
+		Nette\Configurator $config,
+		string $extensionName = 'doctrineTimestampable'
+	) : void {
 		$config->onCompile[] = function (Nette\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new DoctrineTimestampableExtension);
 		};

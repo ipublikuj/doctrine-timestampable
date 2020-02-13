@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Events;
 
+use Zend_Date;
+
 use Nette;
 
 use Doctrine\Common;
@@ -340,7 +342,7 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 		}
 
 		if (isset($mapping['type']) && $mapping['type'] == 'zenddate') {
-			return new \Zend_Date();
+			return new Zend_Date();
 		}
 
 		return \DateTime::createFromFormat('U.u', number_format(microtime(TRUE), 6, '.', ''))

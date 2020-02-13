@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Entities;
 
+use DateTimeInterface;
+
 use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 
 /**
@@ -29,26 +31,26 @@ use IPub\DoctrineTimestampable\Mapping\Annotation as IPub;
 trait TEntityRemoved
 {
 	/**
-	 * @var \DateTimeInterface|NULL
+	 * @var DateTimeInterface|NULL
 	 *
 	 * @IPub\Timestampable(on="delete")
 	 */
 	protected $deletedAt;
 
 	/**
-	 * @param \DateTimeInterface $deletedAt
+	 * @param DateTimeInterface $deletedAt
 	 *
 	 * @return void
 	 */
-	public function setDeletedAt(\DateTimeInterface $deletedAt) : void
+	public function setDeletedAt(DateTimeInterface $deletedAt) : void
 	{
 		$this->deletedAt = $deletedAt;
 	}
 
 	/**
-	 * @return \DateTimeInterface|NULL
+	 * @return DateTimeInterface|NULL
 	 */
-	public function getDeletedAt() : ?\DateTimeInterface
+	public function getDeletedAt() : ?DateTimeInterface
 	{
 		return $this->deletedAt;
 	}

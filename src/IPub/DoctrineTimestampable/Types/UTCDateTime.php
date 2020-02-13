@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Types;
 
+use DateTimeInterface;
+
 use Doctrine\DBAL\Platforms;
 use Doctrine\DBAL\Types;
 
@@ -51,11 +53,11 @@ class UTCDateTime extends Types\DateTimeType
 	 * @param mixed $value
 	 * @param Platforms\AbstractPlatform $platform
 	 *
-	 * @return \DateTimeInterface|NULL
+	 * @return DateTimeInterface|NULL
 	 *
 	 * @throws Types\ConversionException
 	 */
-	public function convertToPHPValue($value, Platforms\AbstractPlatform $platform) : ?\DateTimeInterface
+	public function convertToPHPValue($value, Platforms\AbstractPlatform $platform) : ?DateTimeInterface
 	{
 		if ($value === NULL) {
 			return NULL;
