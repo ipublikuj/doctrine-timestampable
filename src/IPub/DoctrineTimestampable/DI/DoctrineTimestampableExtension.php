@@ -45,7 +45,7 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 	{
 		return Schema\Expect::structure([
 			'lazyAssociation' => Schema\Expect::bool(FALSE),
-			'automapField'    => Schema\Expect::bool(TRUE),
+			'autoMapField'    => Schema\Expect::bool(TRUE),
 			'dbFieldType'     => Schema\Expect::string('datetime'),
 		]);
 	}
