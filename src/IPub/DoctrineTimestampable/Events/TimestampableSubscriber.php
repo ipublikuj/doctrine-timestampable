@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Events;
 
+use DateTime;
+use DateTimeZone;
 use Zend_Date;
 
 use Nette;
@@ -345,8 +347,8 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 			return new Zend_Date();
 		}
 
-		return \DateTime::createFromFormat('U.u', number_format(microtime(TRUE), 6, '.', ''))
-			->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+		return DateTime::createFromFormat('U.u', number_format(microtime(TRUE), 6, '.', ''))
+			->setTimezone(new DateTimeZone(date_default_timezone_get()));
 	}
 
 	/**

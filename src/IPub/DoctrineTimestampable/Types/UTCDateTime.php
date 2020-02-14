@@ -16,7 +16,9 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineTimestampable\Types;
 
+use DateTime;
 use DateTimeInterface;
+use DateTimeZone;
 
 use Doctrine\DBAL\Platforms;
 use Doctrine\DBAL\Types;
@@ -29,7 +31,7 @@ use Doctrine\DBAL\Types;
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-class UTCDateTime extends Types\DateTimeType
+class UTCDateTime extends TypesDateTimeType
 {
 	/**
 	 * Define datatype name
@@ -37,7 +39,7 @@ class UTCDateTime extends Types\DateTimeType
 	public const UTC_DATETIME = 'utcdatetime';
 
 	/**
-	 * @var \DateTimeZone|NULL
+	 * @var DateTimeZone|NULL
 	 */
 	static private $utc = NULL;
 
@@ -64,10 +66,10 @@ class UTCDateTime extends Types\DateTimeType
 		}
 
 		if (self::$utc === NULL) {
-			self::$utc = new \DateTimeZone('UTC');
+			self::$utc = new DateTimeZone('UTC');
 		}
 
-		$val = \DateTime::createFromFormat($platform->getDateTimeFormatString(), $value, self::$utc);
+		$val = DateTime::createFromFormat($platform->getDateTimeFormatString(), $value, self::$utc);
 
 		if (!$val) {
 			throw Types\ConversionException::conversionFailed($value, $this->getName());
@@ -89,7 +91,7 @@ class UTCDateTime extends Types\DateTimeType
 		}
 
 		if (self::$utc === NULL) {
-			self::$utc = new \DateTimeZone('UTC');
+			self::$utc = new DateTimeZone('UTC');
 		}
 
 		$value->setTimeZone(self::$utc);
