@@ -31,7 +31,7 @@ use Doctrine\DBAL\Types;
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-class UTCDateTime extends TypesDateTimeType
+class UTCDateTime extends Types\DateTimeType
 {
 	/**
 	 * Define datatype name
