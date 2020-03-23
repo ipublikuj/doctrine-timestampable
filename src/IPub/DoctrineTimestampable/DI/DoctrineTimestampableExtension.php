@@ -26,7 +26,6 @@ use Nette\Schema;
 use IPub\DoctrineTimestampable;
 use IPub\DoctrineTimestampable\Events;
 use IPub\DoctrineTimestampable\Mapping;
-use IPub\DoctrineTimestampable\Types;
 
 /**
  * Doctrine timestampable extension container
@@ -84,24 +83,6 @@ final class DoctrineTimestampableExtension extends DI\CompilerExtension
 
 		$builder->getDefinition($builder->getByType(Doctrine\ORM\EntityManagerInterface::class, TRUE))
 			->addSetup('?->getEventManager()->addEventSubscriber(?)', ['@self', $builder->getDefinition($this->prefix('subscriber'))]);
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function afterCompile(Code\ClassType $class) : void
-	{
-		parent::afterCompile($class);
-
-		/** @var Code\Method $initialize */
-		$initialize = $class->methods['initialize'];
-		$initialize->addBody(
-			'Doctrine\DBAL\Types\Type::addType(?, ?);',
-			[
-				Types\UTCDateTime::UTC_DATETIME,
-				Types\UTCDateTime::class,
-			]
-		);
 	}
 
 	/**
