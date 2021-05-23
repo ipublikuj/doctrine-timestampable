@@ -5,17 +5,17 @@ This extension is using annotations and can update fields on creation, update, d
 
 ## Installation
 
-The best way to install ipub/doctrine-timestampable is using [Composer](http://getcomposer.org/):
+The best way to install **ipub/doctrine-timestampable** is using [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require ipub/doctrine-timestampable
+composer require ipub/doctrine-timestampable
 ```
 
 After that you have to register extension in config.neon.
 
 ```neon
 extensions:
-	doctrineTimestampable: IPub\DoctrineTimestampable\DI\DoctrineTimestampableExtension
+    doctrineTimestampable: IPub\DoctrineTimestampable\DI\DoctrineTimestampableExtension
 ```
 
 ## Usage
@@ -44,6 +44,7 @@ use IPub\Mapping\Annotation as IPub;
  */
 class Article
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -101,6 +102,7 @@ class Article
     {
         return $this->contentChangedAt;
     }
+
 }
 ```
 
@@ -122,12 +124,14 @@ use IPub\Mapping\Annotation as IPub;
  */
 class Article
 {
+
     /**
      * @var \DateTime|NULL $createdAt
      *
      * @IPub\Timestampable(on="create")
      */
     private $createdAt;
+
 }
 ```
 
@@ -148,6 +152,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Type
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -166,6 +171,7 @@ class Type
     private $articles;
 
     // ...
+
 }
 ```
 
@@ -183,6 +189,7 @@ use IPub\Mapping\Annotation as IPub;
  */
 class Article
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -209,6 +216,8 @@ class Article
     private $publishedAt;
 
     // ...
+
+}
 ```
 
 When the article type is changed to **Published** event for updating ```$publishedAt``` will be triggered.
@@ -227,6 +236,7 @@ use IPub\Mapping\Annotation as IPub;
  */
 class Article
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -253,6 +263,8 @@ class Article
     private $publishedBy;
 
     // ...
+
+}
 ```
 
 Now property ```$publishedBy``` will be changed when article type is set to **Published** or **Deleted**
@@ -273,6 +285,7 @@ use IPub\DoctrineTimestampable\Entities;
  */
 class UsingTrait implements Entities\IEntityCreated, Entities\IEntityUpdated, Entities\IEntityRemoved
 {
+
     /**
      * Hook timestampable behavior for entity author
      * updates createdAt field
@@ -302,5 +315,6 @@ class UsingTrait implements Entities\IEntityCreated, Entities\IEntityUpdated, En
      * @ORM\Column(length=128)
      */
     private $title;
+
 }
 ```
