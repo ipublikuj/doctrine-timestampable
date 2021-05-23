@@ -94,12 +94,12 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 * @throws ORM\Mapping\MappingException
 	 *
 	 * @phpstan-param ORM\Mapping\ClassMetadata<object> $classMetadata
-	 *
-	 * @phpcs:disable SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall
 	 */
 	private function registerEvent(ORM\Mapping\ClassMetadata $classMetadata, string $eventName): void
 	{
+		// phpcs:ignore SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall
 		if (!self::hasRegisteredListener($classMetadata, $eventName, get_called_class())) {
+			// phpcs:ignore SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaFunctionCall
 			$classMetadata->addEntityListener($eventName, get_called_class(), $eventName);
 		}
 	}

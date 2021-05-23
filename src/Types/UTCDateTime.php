@@ -45,9 +45,8 @@ class UTCDateTime extends Types\DateTimeType
 	 * @return DateTimeInterface|null
 	 *
 	 * @throws Types\ConversionException
-	 *
-	 * @phpcs:disable Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps
 	 */
+	// phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps
 	public function convertToPHPValue($value, Platforms\AbstractPlatform $platform): ?DateTimeInterface
 	{
 		if ($value === null) {
