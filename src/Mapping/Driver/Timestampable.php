@@ -73,8 +73,8 @@ final class Timestampable
 	 * @param DoctrineTimestampable\Configuration $configuration
 	 */
 	public function __construct(
-		?Common\Cache\Cache $cache,
-		DoctrineTimestampable\Configuration $configuration
+		DoctrineTimestampable\Configuration $configuration,
+		?Common\Cache\Cache $cache
 	) {
 		$this->configuration = $configuration;
 		$this->cache = $cache;
