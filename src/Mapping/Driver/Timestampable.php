@@ -74,7 +74,7 @@ final class Timestampable
 	 */
 	public function __construct(
 		DoctrineTimestampable\Configuration $configuration,
-		?Common\Cache\Cache $cache
+		?Common\Cache\Cache $cache = null
 	) {
 		$this->configuration = $configuration;
 		$this->cache = $cache;
