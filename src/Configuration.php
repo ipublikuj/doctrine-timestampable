@@ -32,39 +32,15 @@ final class Configuration
 	use Nette\SmartObject;
 
 	/**
-	 * Flag if use lazy association or not
-	 *
-	 * @var bool
-	 */
-	public bool $lazyAssociation = false;
-
-	/**
-	 * Automatically map filed if not set
-	 *
-	 * @var bool
-	 */
-	public bool $autoMapField = true;
-
-	/**
-	 * Default database type
-	 *
-	 * @var string
-	 */
-	public string $dbFieldType = 'datetime';
-
-	/**
 	 * @param bool $lazyAssociation
 	 * @param bool $autoMapField
 	 * @param string $dbFieldType
 	 */
 	public function __construct(
-		bool $lazyAssociation = false,
-		bool $autoMapField = false,
-		string $dbFieldType = 'datetime'
+		public readonly bool $lazyAssociation = false,
+		public readonly bool $autoMapField = false,
+		public readonly string $dbFieldType = 'datetime'
 	) {
-		$this->lazyAssociation = $lazyAssociation;
-		$this->autoMapField = $autoMapField;
-		$this->dbFieldType = $dbFieldType;
 	}
 
 	/**

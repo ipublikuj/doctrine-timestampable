@@ -45,12 +45,6 @@ final class Timestampable
 	 */
 	private static array $objectConfigurations = [];
 
-	/** @var DoctrineTimestampable\Configuration */
-	private DoctrineTimestampable\Configuration $configuration;
-
-	/** @var Common\Cache\Cache|null */
-	private ?Common\Cache\Cache $cache;
-
 	/** @var Common\Annotations\Reader */
 	private Common\Annotations\Reader $annotationReader;
 
@@ -69,16 +63,10 @@ final class Timestampable
 		'integer',
 	];
 
-	/**
-	 * @param DoctrineTimestampable\Configuration $configuration
-	 */
 	public function __construct(
-		DoctrineTimestampable\Configuration $configuration,
-		?Common\Cache\Cache $cache = null
+		private readonly DoctrineTimestampable\Configuration $configuration,
+		private readonly ?Common\Cache\Cache $cache = null
 	) {
-		$this->configuration = $configuration;
-		$this->cache = $cache;
-
 		if ($cache !== null) {
 			$this->annotationReader = new Common\Annotations\PsrCachedReader(
 				new Common\Annotations\AnnotationReader(),

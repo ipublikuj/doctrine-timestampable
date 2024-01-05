@@ -22,6 +22,7 @@ use Doctrine\Common;
 use Doctrine\ORM;
 use IPub\DoctrineTimestampable\Exceptions;
 use IPub\DoctrineTimestampable\Mapping;
+use IPub\DoctrineTimestampable\Providers;
 use Nette;
 
 /**
@@ -37,16 +38,10 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 
 	use Nette\SmartObject;
 
-	/** @var Mapping\Driver\Timestampable */
-	private Mapping\Driver\Timestampable $driver;
-
-	/**
-	 * @param Mapping\Driver\Timestampable $driver
-	 */
 	public function __construct(
-		Mapping\Driver\Timestampable $driver
+		private readonly Mapping\Driver\Timestampable $driver,
+		private readonly Providers\DateProvider|null $dateProvider = null,
 	) {
-		$this->driver = $driver;
 	}
 
 	/**
@@ -304,12 +299,16 @@ final class TimestampableSubscriber implements Common\EventSubscriber
 	 *
 	 * @phpstan-param ORM\Mapping\ClassMetadata<object> $classMetadata
 	 */
-	private function getDateValue(ORM\Mapping\ClassMetadata $classMetadata, string $field)
+	private function getDateValue(ORM\Mapping\ClassMetadata $classMetadata, string $field): DateTimeInterface|int
 	{
 		$mapping = $classMetadata->getFieldMapping($field);
 
 		if (isset($mapping['type']) && $mapping['type'] === 'integer') {
-			return time();
+			return $this->dateProvider !== null ? $this->dateProvider->getTimestamp() : time();
+		}
+
+		if ($this->dateProvider !== null) {
+			return $this->dateProvider->getDate();
 		}
 
 		$dateTime = DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
